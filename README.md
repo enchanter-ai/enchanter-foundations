@@ -43,13 +43,34 @@ agent-foundations/
 
 ---
 
-## Quickstart — 3 minutes
+## Quickstart — 30 seconds
 
-### Claude Code
+One-liner installer (vendored copy at `./shared/foundations`, no `.git` footprint):
 
 ```bash
-git submodule add https://github.com/enchanter-ai/agent-foundations shared/foundations
+curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh
 ```
+
+Pick a smaller install if you want less surface:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh -s -- --mode starter   # conduct/ + taxonomy/
+curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh -s -- --mode minimal   # conduct/ only
+```
+
+Or as a git submodule (history preserved, pinned via parent repo):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh -s -- --submodule
+```
+
+Full options: `install.sh --help`.
+
+---
+
+## Wire it up
+
+### Claude Code
 
 In your project's `CLAUDE.md`:
 
