@@ -2,8 +2,6 @@
 
 **The foundations for building durable AI agents — conduct, engines, and the math behind both.**
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
 Most agent stacks ship with prompts, tools, and hopes. This repo gives you the missing layer: a model-agnostic framework of behavior rules, algorithmic primitives, a failure-mode taxonomy, and adoption recipes — battle-tested across production agent systems and packaged for drop-in adoption.
 
 ---
