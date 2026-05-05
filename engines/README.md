@@ -34,6 +34,7 @@ Within a project, engines often carry a project-letter prefix (e.g., H1–H5 for
 
 - `agentproof.md` — Pre-execution static verification: six structural graph checks + temporal safety policy DFA evaluation (status: concept)
 - `boundary-segmentation.md` — Jaccard-Cosine multi-signal clustering
+- `calibration.md` — Sycophancy-rate calibration via progressive/regressive ratios — turns doubt-engine prose into a measurable axis
 - `drift-detection.md` — Markov drift + EMA learning
 - `entropy-analysis.md` — Shannon entropy
 - `lcs-alignment.md` — Hunt-Szymanski longest common subsequence
@@ -67,3 +68,4 @@ Example: `trust-scoring.md` produces a posterior mean ∈ [0, 1]. [`../conduct/v
 | Boundary segmentation | Jaccard + cosine + time-decay | Cluster a stream of events into discrete tasks |
 | LLM Bandit | Contextual ε-greedy / UCB bandit | Route each invocation to the optimal model tier by cost-adjusted quality reward; warm-starts from a cross-session state file |
 | Agentproof | Six structural graph checks + DFA temporal policy evaluation | Verify an agent workflow statically before execution; returns PASS or FAIL with a witness trace (status: concept) |
+| Calibration | Progressive/regressive sycophancy ratios | Quantify the F01 sycophancy rate over a session and produce a CALIBRATED / SYCOPHANTIC / OVERCORRECTED verdict |
