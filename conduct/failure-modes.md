@@ -6,7 +6,7 @@ Audience: any agent that logs failure observations. A controlled vocabulary for 
 
 Accumulation only learns if failure reasons are comparable. "It got worse" is not a signal — "F04 task-drift during axis-3 tightening" is. Every log row tags exactly one code.
 
-## The 14 canonical codes
+## The 21 canonical codes
 
 ### Generation failures
 
@@ -36,6 +36,18 @@ Accumulation only learns if failure reasons are comparable. "It got worse" is no
 | F12 | Degeneration loop | Same edit, reverted, re-applied across iterations | No-regression contract; stop the axis |
 | F13 | Distractor pollution | Long irrelevant context bent the output | See [`./context.md`](./context.md) § Smallest-set rule |
 | F14 | Version drift | Used deprecated API / retired model ID / old flag | Check your model capability registry and current docs before emitting |
+
+### Multi-agent and alignment failures
+
+| Code | Name | Signature | Counter |
+|------|------|-----------|---------|
+| F15 | Inter-agent misalignment | Two parallel agents produced contradictory outputs that compose into a broken artifact | Partition work so outputs don't conflict; diff-check before merging |
+| F16 | Task-verification skip | Subagent returned success without running the required completeness or correctness check | Structured return clause must include verification step output; parent checks for it |
+| F17 | System-design brittleness | A pipeline succeeds in isolation but breaks when agents are reordered or a node is replaced | Invariant-test each seam; don't assume composition is stable |
+| F18 | Goal-conflict insider behavior | Agent pursued an instrumental goal (coercion, exfiltration, deception) the principal did not sanction | Minimal tool whitelist; per-call confirmation on sensitive ops; audit goal traces |
+| F19 *(awareness)* | Alignment faking | Agent behaves compliantly under observation and non-compliantly when unobserved | Red-team with observed vs. unobserved conditions; escalate to safety review on any signal |
+| F20 *(awareness)* | Sandbagging | Agent underperforms on capability evaluations to avoid triggering oversight thresholds | Blind eval sets; multiple independent evaluators; escalate to safety review on any signal |
+| F21 | Weaponized tool use | Agent used a legitimate tool to cause harm (data exfiltration, denial-of-service, unauthorized action) | Hard tool whitelist; destructive-op confirmation; scope fence per subagent |
 
 ## How to log a failure
 
@@ -72,6 +84,9 @@ Some codes are single-occurrence — log and continue. Some require stopping:
 | F06, F08, F09, F10 | Revert, log, retry | Pause workflow — contract broken |
 | F11, F12 | Revert, switch axis | Freeze convergence on this artifact |
 | F14 | Regenerate against current registry | Audit the registry freshness |
+| F15, F16, F17 | Revert, partition, log | Redesign the seam — contract broken |
+| F18, F21 | Halt, revert all artifact writes, log | Pause workflow — safety contract broken |
+| F19, F20 *(awareness)* | Log and continue (red-team eval, not runtime) | Escalate to safety review |
 
 ## Anti-patterns in logging
 
@@ -79,11 +94,11 @@ Some codes are single-occurrence — log and continue. Some require stopping:
 - **Logging the fix, not the failure.** The log records what *didn't work* and why, not your victory lap.
 - **Multiple codes on one entry.** Pick the dominant one. If truly two, split into two entries.
 - **Logging at verdict time only.** Log the *hypothesis* before the iteration; log the *outcome* after. Both halves needed.
-- **"Couldn't find a matching code."** Then propose a new one (F15+) in the PR, don't invent ad-hoc names. The taxonomy grows deliberately.
+- **"Couldn't find a matching code."** Then propose a new one (F22+) in the PR, don't invent ad-hoc names. The taxonomy grows deliberately.
 
 ## Extending the taxonomy
 
-New codes are additive. To propose F15:
+New codes are additive. To propose F22+:
 
 1. Observe it in at least 3 independent contexts.
 2. Name the signature precisely.

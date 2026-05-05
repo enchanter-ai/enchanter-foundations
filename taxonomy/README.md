@@ -83,15 +83,10 @@ F15, F16, and F17 form a natural cluster corresponding to the three MAST taxonom
 
 When a failure in a multi-agent pipeline is observed, check all three before selecting the dominant code — they frequently co-occur, and the root cause is often architectural (F17) while the observable symptom is coordination-level (F15 or F16).
 
-## Structural note
+## Structural note — resolved via hybrid
 
-**AgentErrorTaxonomy contradiction (arxiv 2509.25370).** This paper proposes a 5-axis modular structure for agent failure taxonomies — memory, reflection, planning, action, and system — that is empirically grounded in a large corpus of agent failures. Adopting it would require renumbering F01–F21 and restructuring the entire `taxonomy/` directory. The current flat F-code list is retained for backward compatibility and simplicity; this is a known architectural trade-off, not an oversight.
+The AgentErrorTaxonomy paper (arxiv 2509.25370) proposes a 5-axis modular structure (memory, reflection, planning, action, system) for agent failure taxonomies. Earlier versions of this repo deferred the decision between flat F-codes and the 5-axis structure. **As of 2026-05-05 the resolution is the hybrid path:** the flat F01–F21 numbering remains the operational identifier, AND a parallel 5-axis mapping lives at [`axes.md`](./axes.md).
 
-The structural question is deliberately deferred. Migrating to the 5-axis schema is a breaking change: all documentation, `CLAUDE.md` references, `learnings.md` entries, and downstream plugins that log failure codes by F-number would require auditing. A community decision is needed before committing to either path:
+This is not a compromise. It is the structurally-correct shape: flat codes for grep-ability and minimal logging overhead; axes for review and structural pressure analysis. See `axes.md` for the full mapping, placement rationale for boundary cases (F02, F16, F18, F21), and the migration trigger conditions.
 
-- **Option A — Extend flat list.** Continue F22, F23, … as new codes are identified. Simple, backward-compatible, does not match the research-backed structure.
-- **Option B — Migrate to 5-axis.** Adopt the AgentErrorTaxonomy schema, map existing F01–F21 to axes, retire the flat numbering. Research-backed, structurally coherent, breaking change for all consumers.
-
-This note tracks the contradiction explicitly so the community can deliberate. A tracking issue is the recommended venue. Do not fold the restructuring into a taxonomy extension PR — they are separate decisions.
-
-**Reference:** AgentErrorTaxonomy: Towards a Unified Taxonomy for LLM-Based Agent Errors (arxiv 2509.25370). https://arxiv.org/abs/2509.25370
+Awareness codes F19 and F20 stay in the main flat list (not a separate annex), tagged `(awareness)` at the index entry above and at the top of each file. Adopters who do not need alignment-research codes can filter by tag rather than by file path.
