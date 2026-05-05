@@ -47,6 +47,8 @@ Rough target sizes for a well-written agent prompt (body only, excluding frontma
 
 Under-sizing produces wrong outputs silently. Over-sizing produces bloat, slower reads, and — for top tier specifically — signals distrust that can degrade the reasoning.
 
+Tier selection reduces cost per token; [`./cost-accounting.md`](./cost-accounting.md) covers the session-wide budget ceiling. Both levers are required: choosing the correct tier without a spawn or tool-call cap leaves the total session cost unconstrained.
+
 ## Examples
 
 ### Bad (low-tier prompt at top-tier density)

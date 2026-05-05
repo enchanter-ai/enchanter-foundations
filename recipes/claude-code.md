@@ -120,6 +120,42 @@ Reference both in your `CLAUDE.md`:
 
 If a referenced module isn't being read, check the path — `@` syntax is relative to the project root.
 
+## Enforcement wiring
+
+The conduct modules in this framework are descriptive by default. The table below maps each
+module to the lifecycle event that can enforce it, and to the starter hook pattern in
+`conduct/hooks.md` § Starter patterns that implements the enforcement.
+
+| Conduct rule | Enforce via | Hook pattern |
+|---|---|---|
+| `verification.md` § Dry-run for destructive ops | PreToolUse on `Bash` | Pattern 1 — destructive-op deny |
+| `tool-use.md` § Read before Edit | PreToolUse on `Edit` | Pattern 1 variant (check for prior Read of same path in session) |
+| `discipline.md` § Surgical changes | PostToolUse on `Write|Edit` | Pattern 2 — lint-output inject (diff line count check) |
+| `hooks.md` § Logging from hooks | Stop | Pattern 3 — prompt-save notification |
+| `precedent.md` § Consult-then-act | PreToolUse on `Bash` | Pattern 1 variant (grep precedent log before exec) |
+| `delegation.md` § Three non-negotiable clauses | PreToolUse on `Agent` | Pattern 1 variant (assert structured return clause present) |
+
+**Which rules cannot be enforced via hooks.** The conduct modules covering reasoning —
+`doubt-engine.md`, `context.md`, `tier-sizing.md` — operate inside the model's forward pass.
+No lifecycle hook can intercept that. Enforcement applies to *actions* (tool calls, file writes,
+shell commands), not *reasoning*. The table above covers actions only.
+
+**Hooks are Claude Code-specific.** The wiring above applies to Claude Code sessions.
+The `openai-agents.md` and `cursor.md` recipes need parallel enforcement mechanisms.
+OpenAI Agents SDK uses middleware; Cursor uses rule activations. Each recipe should document
+its own equivalent patterns — out of scope for this PR.
+
+**Subagent guard.** When a parent agent spawns a subagent, Claude Code may fire
+`UserPromptSubmit` hooks on the subagent's first message, causing a loop. Guard all hooks
+that register on `UserPromptSubmit` with:
+
+```bash
+[[ -n "${CLAUDE_SUBAGENT:-}" ]] && exit 0
+```
+
+The PreToolUse / PostToolUse / Stop patterns above do not fire on UserPromptSubmit and
+do not require this guard.
+
 ## What this won't do
 
 - Force the agent to obey the conduct. Memorized rules attenuate (see [F05](../taxonomy/f05-instruction-attenuation.md)). For load-bearing rules, write a hook.

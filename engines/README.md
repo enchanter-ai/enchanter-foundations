@@ -32,15 +32,17 @@ Don't add an engine for:
 
 Within a project, engines often carry a project-letter prefix (e.g., H1–H5 for project Hydra, W1–W5 for project Sylph). That's a local convenience. In this catalog, engines are named by **what they compute**, not where they live:
 
-- `pattern-detection.md` — Aho-Corasick multi-pattern matching
-- `entropy-analysis.md` — Shannon entropy
-- `trust-scoring.md` — Beta-Bernoulli conjugate prior
+- `agentproof.md` — Pre-execution static verification: six structural graph checks + temporal safety policy DFA evaluation (status: concept)
+- `boundary-segmentation.md` — Jaccard-Cosine multi-signal clustering
 - `drift-detection.md` — Markov drift + EMA learning
+- `entropy-analysis.md` — Shannon entropy
 - `lcs-alignment.md` — Hunt-Szymanski longest common subsequence
-- `tree-edit.md` — Zhang-Shasha tree edit distance
+- `llm-bandit.md` — Contextual multi-armed bandit for model-tier routing by cost-adjusted quality reward
+- `pattern-detection.md` — Aho-Corasick multi-pattern matching
 - `scc.md` — Tarjan strongly-connected components
 - `sprt.md` — Wald sequential probability ratio test
-- `boundary-segmentation.md` — Jaccard-Cosine multi-signal clustering
+- `tree-edit.md` — Zhang-Shasha tree edit distance
+- `trust-scoring.md` — Beta-Bernoulli conjugate prior
 
 When projects adopt one of these, they typically wrap it with a project-specific signature and label, but the underlying math is the same.
 
@@ -63,3 +65,5 @@ Example: `trust-scoring.md` produces a posterior mean ∈ [0, 1]. [`../conduct/v
 | Strongly-connected components | Tarjan | Find dependency cycles in O(V+E) over directed graphs |
 | Sequential probability ratio | Wald SPRT | Decide between two hypotheses with the minimum sample count |
 | Boundary segmentation | Jaccard + cosine + time-decay | Cluster a stream of events into discrete tasks |
+| LLM Bandit | Contextual ε-greedy / UCB bandit | Route each invocation to the optimal model tier by cost-adjusted quality reward; warm-starts from a cross-session state file |
+| Agentproof | Six structural graph checks + DFA temporal policy evaluation | Verify an agent workflow statically before execution; returns PASS or FAIL with a witness trace (status: concept) |

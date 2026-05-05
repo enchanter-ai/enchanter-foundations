@@ -27,7 +27,7 @@ Concrete:
 
 2. Latency budget: 100ms p99. Agent removes a debug log statement that was 5ms; latency drops, budget passes. But the log was load-bearing for incident triage. **Counter:** Latency wins matter only if functionality is preserved.
 
-3. "All public functions documented" lint passes after agent adds `"""TODO"""` docstrings everywhere. **Counter:** The metric measured documentation, not "any string in the docstring slot."
+3. <!-- intentional: literal example string the failing agent inserted; do not resolve --> "All public functions documented" lint passes after agent adds `"""TODO"""` docstrings everywhere. **Counter:** The metric measured documentation, not "any string in the docstring slot."
 
 ## Adjacent codes
 

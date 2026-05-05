@@ -8,6 +8,17 @@ Audience: anyone reading this repo for the first time. The terminology used acro
 
 **Subagent** — an agent spawned by another agent (the *parent*). Subagents have their own context window, isolated from the parent. The parent receives only the subagent's structured return.
 
+## Agent-card
+
+A structured document — file, manifest, or frontmatter block — that declares an agent's
+or skill's identity, capabilities, and invocation conditions to a host system. The framework's
+SKILL.md is an agent-card. External equivalents include MCP Tool/Prompt/Resource objects,
+OpenAI tool descriptors, and Cursor `.mdc` frontmatter.
+
+See [`./conduct/skill-authoring.md`](./conduct/skill-authoring.md) § Cross-vendor schema alignment.
+
+---
+
 ## Tier (Top / Mid / Low)
 
 A model-capability tier. Concrete examples:
@@ -97,6 +108,14 @@ A statistical test that achieves the minimum expected sample size to decide betw
 
 The accumulated `log(P(data | H₁) / P(data | H₀))`. The decision variable in SPRT.
 
+## MCP manifest
+
+A JSON-RPC message conforming to the MCP Specification (Model Context Protocol) that exposes
+a server's Tools, Resources, and Prompts to an MCP client. The canonical schema reference for
+cross-vendor skill interoperability. Specification: `https://spec.modelcontextprotocol.io/`.
+
+---
+
 ## Posterior mean / Posterior variance
 
 For a Beta distribution `Beta(α, β)`:
@@ -113,6 +132,17 @@ A maximal mutually-reachable subset of a directed graph. Found in `O(V + E)` by 
 ## LCS (Longest Common Subsequence)
 
 The longest sequence appearing in both inputs while preserving order. Used to measure how much of an anchor sequence survives in a current state ([`./engines/lcs-alignment.md`](./engines/lcs-alignment.md)).
+
+## Tool-descriptor
+
+A structured object, typically JSON or YAML, that describes one tool's name, purpose, input
+schema, and behavioral annotations (readOnly, destructive, idempotent, openWorld). OpenAI's
+Agents SDK formalizes tool-descriptors with those four annotations. The framework captures
+tool identity and purpose in SKILL.md frontmatter; it does not yet capture behavioral annotations.
+
+See [`./conduct/skill-authoring.md`](./conduct/skill-authoring.md) § Cross-vendor schema alignment.
+
+---
 
 ## Tree edit distance
 

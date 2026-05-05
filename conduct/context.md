@@ -63,6 +63,8 @@ Memory and prior-session summaries decay. Before acting on a recalled fact:
 
 A memory saying "X exists" is a claim about when the memory was written, not about now.
 
+For working-memory accumulation across long sessions — when observations are piling up across turns rather than within a single prompt — see [`./memory-hygiene.md`](./memory-hygiene.md). The two modules are complementary: `context.md` governs what enters the prompt window; `memory-hygiene.md` governs what the agent decides to carry forward as accumulated state.
+
 ## Anti-patterns
 
 - **Shotgun `Read` at session start.** Reading ten files "in case they're relevant" — pick the one or two that actually are.
