@@ -1,0 +1,87 @@
+# Self-test workflow — runs the A/B fixture suite via tests/runner.py
+#
+# Reference example. Adopters can fork this directly or swap for a
+# Promptfoo / Inspect-AI workflow per recipes/stupid-agent-review.md.
+#
+# Required secret:
+#   ANTHROPIC_API_KEY  — for the runner's anthropic SDK calls.
+#
+# Cost cap: each fixture has MAX_TOKENS_PER_FIXTURE = 20_000 hardcoded
+# in runner.py. A full 19-fixture run costs roughly $0.50 - $1.00 in
+# API spend with the default Sonnet 4.6 + Haiku 4.5 model assignments.
+#
+# Cadence: this workflow runs on PRs that touch conduct/, tests/, or
+# docs/self-test.md. It does NOT run on every push to main — that
+# would burn budget on no-op commits. A weekly schedule is included
+# for drift detection (training-data shifts, model behavior changes).
+
+name: self-test
+
+on:
+  pull_request:
+    paths:
+      - 'conduct/**'
+      - 'tests/**'
+      - 'docs/self-test.md'
+      - '.github/workflows/self-test.yml'
+  schedule:
+    # Sunday 03:00 UTC — weekly drift check
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+    inputs:
+      fixture:
+        description: 'Single fixture to run (e.g. discipline.fixture.md). Empty = all.'
+        required: false
+        default: ''
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install runner dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install 'anthropic>=0.40,<1.0'
+
+      - name: Run fixtures
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -n "${{ inputs.fixture }}" ]; then
+            echo "Running single fixture: ${{ inputs.fixture }}"
+            python tests/runner.py "tests/${{ inputs.fixture }}"
+          else
+            echo "Running full fixture suite"
+            for fx in tests/*.fixture.md; do
+              echo "=== $fx ==="
+              python tests/runner.py "$fx" || echo "[fail] $fx — see log above"
+            done
+          fi
+
+      - name: Surface results in PR (advisory only)
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "Fixture results above are advisory. Per docs/self-test.md, no-delta and inverse-delta results are valid data — they are not blocking failures. Reviewers should read the fixture's Observed section, not the workflow's exit code, for the verdict."
+
+# What this workflow does NOT do:
+#
+# 1. Block merges on no-delta results. Per the framework's honest-numbers
+#    principle, "no behavioral delta" is a valid outcome — not a CI failure.
+#    Adopters who want gating should add their own threshold logic.
+#
+# 2. Update fixture files in-place. The --apply flag is intentionally not
+#    set here — Observed sections should be reviewed before being committed,
+#    not auto-mutated by CI.
+#
+# 3. Run on every commit to main. That would 10x the API spend without new
+#    signal. Schedule + PR-only is the cost-conscious default.

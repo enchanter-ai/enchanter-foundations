@@ -47,3 +47,19 @@ The pattern of "delegation prompt with structured return + scope fence + briefin
 - Likely training contamination — structured-return-with-scope-fence is a common delegation pattern.
 - The fixture's value on Sonnet is as a regression test (does loading the module break the structure?) rather than as an impact measurement.
 - A weaker tier (Haiku) might produce loose delegation prompts without these clauses; the module would discriminate there. Untested here.
+
+## Run 2 — Haiku tier (2026-05-06)
+
+Re-ran the same A/B with `claude-haiku-4-5` as the subject.
+
+| Check | Haiku Baseline | Haiku Treatment |
+|---|---|---|
+| Structured return clause | ✓ | ✓ |
+| Scope fence | ✓ | ✓ |
+| Context briefing | ~ thin ("This is a Zelkrin build system issue") | ✓ explicit "Already ruled out / Need to focus on" structure |
+| Word cap | ✓ ("under 300 words") | ✓ |
+| Three clauses structurally distinct | ~ blended in prose | ✓ explicit `**Context briefing**`, `**Scope fence**`, `**Structured return clause**` labels |
+
+**Haiku verdict: TREATMENT 5/5, BASELINE 4/5. Borderline-clear delta** — treatment uses module-vocabulary section labels; baseline produces equivalent content in less structured prose.
+
+**Cross-tier:** Sonnet showed no delta; Haiku shows borderline delta on labeling rigor. The module's three-clause naming convention is what discriminates on Haiku.

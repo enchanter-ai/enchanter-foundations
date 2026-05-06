@@ -45,3 +45,19 @@ The treatment slightly improved the Signal line by suggesting `--help` inspectio
 - Training contamination on the structural format is high — operational log entries are a well-documented pattern.
 - The discriminating power on Sonnet is exhausted; a weaker tier (Haiku) might produce diary-style entries without the structured fields. Untested here.
 - The fixture-author's prior-batch caveat applies: this fixture is a regression test on Sonnet, not an impact measurement.
+
+## Run 2 — Haiku tier (2026-05-06)
+
+Re-ran the same A/B with `claude-haiku-4-5` as the subject.
+
+| Check | Haiku Baseline | Haiku Treatment |
+|---|---|---|
+| Verbatim failing command | ✓ | ✓ |
+| Verbatim working command | ✓ | ✓ |
+| Signal line is actionable | ~ generic ("check the script's help output or recent changes") | ✓ specific ("if score.py fails on `--weights`, try `--weight-mode`") |
+| Tags field present | ✓ ("python, cli, flags") | ✓ ("python, score, cli-drift") |
+| Date header present | ✓ | ✓ |
+
+**Haiku verdict: BOTH 5/5. MARGINAL delta** — treatment produces sharper signal and more specific tags, but baseline already passes all five checks.
+
+**Cross-tier:** Operational log entry format is widely documented across tiers; both Sonnet and Haiku produce it without the module. The module's marginal value is signal-line specificity and tag granularity, not the basic structural format.

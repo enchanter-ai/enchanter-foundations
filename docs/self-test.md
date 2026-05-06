@@ -156,6 +156,25 @@ Re-ran 5 of the 6 high-contamination Sonnet fixtures with `claude-haiku-4-5` as 
 
 **4 of 5 modules show clear behavioral delta on Haiku that did not appear on Sonnet.** The contamination hypothesis is supported: Sonnet has internalized these patterns through training; Haiku has not.
 
+### Extended Haiku sample (2026-05-06, second batch)
+
+Three more Haiku A/Bs ran on additional Sonnet-no-delta modules:
+
+| Module | Haiku result |
+|---|---|
+| `delegation.md` | treatment 5/5, baseline 4/5 — borderline-clear delta on three-clause labeling rigor |
+| `precedent.md` | both 5/5 — marginal delta (sharper signal + more specific tags in treatment) |
+| `multi-turn-negotiation.md` | both 4/4 — form-rigor delta only (treatment explicitly names the three pressure-vs-evidence tests; baseline reaches same outcome) |
+
+Updated cross-tier totals (8 modules sampled on Haiku of 14 Sonnet-no-delta modules): **5 of 8 show measurable behavioral delta on Haiku — 3 strong (failure-modes, verification, doubt-engine), 2 clear (tool-use, delegation), plus 1 marginal and 2 form-rigor only.**
+
+### v2 fixture redesigns shipped (2026-05-06)
+
+The 2 prior-batch design-failed fixtures (skill-authoring, web-fetch) had v2 versions designed and run:
+
+- **`web-fetch v2`** — treatment 5/5, baseline 4/5, **strong behavioral delta**. The redesign worked: presenting working notes (paraphrase) instead of the source paragraph surfaces the verbatim-quote rule's actual counter to F02 fabrication.
+- **`skill-authoring v2`** — baseline 5/5, treatment **4/5 — INVERSE delta**. Treatment over-thought tools and added Grep beyond minimal `[Read, Write]`. The most interesting cross-batch result: loading a module on Sonnet can shift behavior in non-improvement directions when the module's nuance gets surfaced over its base case. See [`../tests/skill-authoring.fixture.md`](../tests/skill-authoring.fixture.md) Run 2 for the full reading.
+
 ### Revised honest claim
 
 The earlier framing "5 of 19 modules show real impact" was misleading. The corrected claim:
