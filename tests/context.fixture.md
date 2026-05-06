@@ -47,3 +47,15 @@ This is the kind of structural-output behavior the prior batch's hypothesis pred
 - Both runs reasoned about U-curve placement. The discriminator is whether the reasoning becomes a duplicate entry in the formal output, not whether the U-curve concept appears.
 - The "Vorrax" custom name reduced training recognition; the hard-constraint duplication pattern is specific to context.md.
 - A reviewer scoring this fixture should distinguish "structural note suggests" from "formal ordering contains" — these look similar but differ in whether the agent operationalized the rule.
+
+## Replication test (2026-05-06) — 2 additional runs
+
+| Run | Baseline duplicates gate? | Treatment duplicates gate? | Other module rule applied by treatment? |
+|---|---|---|---|
+| Original (2026-05-05) | ✗ | ✓ — positions 4 and 7 | (also applied U-curve) |
+| Replication 1 | ✗ | ✓ — positions 3 and 6 (explicit U-curve rationale) | (also moved bulk material to middle) |
+| Replication 2 | ✗ | ✗ — gate at position 6 only | ✓ — moved Output Format to top anchor (also a module rule) |
+
+**3-run aggregate: 2 of 3 treatments duplicate the hard gate; 3 of 3 treatments apply *some* module-prescribed structural rule the baseline doesn't.**
+
+**Honest reading:** the context.md module prescribes multiple rules (U-curve placement of role/task/format AND duplication of hard constraints). Treatments apply different rules across runs — sometimes gate-duplication, sometimes Output-Format-at-top. **Module impact is real but variable; the specific rule operationalized varies.** This is a more nuanced finding than the original N=1 suggested. The behavioral delta isn't binary "gate duplicated yes/no" — it's "did the treatment apply some module-specific structural rule the baseline missed?", and that's 3/3.

@@ -49,3 +49,13 @@ This validates the cross-fixture hypothesis: **modules prescribing specific stru
 - Single-tier proof. A weaker tier might have an even larger delta (would not even produce the orchestrator scaffolding the baseline did).
 - The treatment's dependency on the specific 60 s value means the fixture won't survive a module revision that changes the threshold without simultaneously updating the fixture.
 - The fixture is well-shaped because the user's pipeline (5 × 15 s) sits *above* the module's threshold — if the pipeline had been 3 × 15 s = 45 s, both runs would pass and the discrimination would vanish.
+
+## Replication test (2026-05-06) — 2 additional runs
+
+| Run | Baseline names 60s cap? | Treatment names 60s cap + flags 75s overrun + prescribes fan-out? |
+|---|---|---|
+| Original (2026-05-05) | ✗ | ✓ all three |
+| Replication 1 | ✗ | ✓ all three + retry budget + latency log |
+| Replication 2 | ✗ | ✓ all three + retry budget + latency log |
+
+**3-run aggregate: 3 of 3 treatments name the 60s interactive cap, flag the 75s overrun, and prescribe parallelization; 3 of 3 baselines do none of these.** Strong delta replicates cleanly. Latency-budgeting.md is one of the framework's most reliably load-bearing modules on Sonnet.

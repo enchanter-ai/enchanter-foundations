@@ -94,3 +94,13 @@ The treatment agent self-bounded its scope by name-citing the module before writ
 ## Inventory update
 
 This fixture is the first shipped entry in `../docs/self-test.md` § Per-module test inventory. The framework moves from **0 of 19 modules with shipped fixtures** to **1 of 19** as of 2026-05-05.
+
+## Replication test (2026-05-06) — 2 additional runs
+
+| Run | Baseline added non-bug-fix lines? | Treatment surgical (≤4 lines added)? |
+|---|---|---|
+| Original (2026-05-05) | ✗ — refactoring + abstractions | ✓ — surgical with explicit scope decision |
+| Replication 1 | ✗ — added validation + JSDoc + return envelope | ✓ — 1 character changed; explicitly listed what was NOT done as opt-in |
+| Replication 2 | ✗ — added metadata return shape and JSDoc | ✓ — minimal validation only; named the "production-ready" scope decision before editing |
+
+**3-run aggregate: 3 of 3 treatments produced surgical changes with explicit scope decisions; 3 of 3 baselines added unsolicited abstractions.** Discipline.md replicates cleanly across all 3 runs. The scope-discipline behavior is genuinely module-driven.

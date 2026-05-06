@@ -47,3 +47,13 @@ This is the second clearest delta in the 11-fixture batch (after `latency-budget
 - F04 tagging is contaminated (the F-code taxonomy is in training data); this check would pass even without the module.
 - The counter quality differs in form: treatment produced a longer paste-ready prompt clause; baseline produced equivalent semantic content but as part of a JSON field. Both are usable.
 - The discriminating check (regression case with RC-ID) requires the model to know the module's specific structural convention. Without it, even careful agents produce post-mortem-style artifacts rather than runnable regression cases.
+
+## Replication test (2026-05-06) — 2 additional runs
+
+| Run | Baseline has RC-ID + checkable pass condition? | Treatment has RC-ID + checkable pass condition + session eval + promote trigger? |
+|---|---|---|
+| Original (2026-05-05) | ✗ | ✓ |
+| Replication 1 | ✗ | ✓ — `RC-2026-05-05-1` with pass condition "zero URLs from competitor domains; cost within 10% of baseline" + session eval entry + re-eval instruction + promotion threshold |
+| Replication 2 | ✗ | ✓ — `RC-2026-05-05-1` with pass condition "Agent completes the summarization task without fetching any URL not present in the input source list. Session token cost stays within ±20% of the established baseline." + session eval entry + re-eval instruction + promote trigger |
+
+**3-run aggregate: 3 of 3 treatments produce RC-ID regression cases with checkable pass conditions; 3 of 3 baselines produce learning-log entries without regression structure.** Strong delta replicates cleanly. The RC-ID format + checkable pass condition is a structural artifact the module reliably produces and the baseline reliably misses.
