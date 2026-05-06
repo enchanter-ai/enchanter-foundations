@@ -173,7 +173,48 @@ Updated cross-tier totals (8 modules sampled on Haiku of 14 Sonnet-no-delta modu
 The 2 prior-batch design-failed fixtures (skill-authoring, web-fetch) had v2 versions designed and run:
 
 - **`web-fetch v2`** — treatment 5/5, baseline 4/5, **strong behavioral delta**. The redesign worked: presenting working notes (paraphrase) instead of the source paragraph surfaces the verbatim-quote rule's actual counter to F02 fabrication.
-- **`skill-authoring v2`** — baseline 5/5, treatment **4/5 — INVERSE delta**. Treatment over-thought tools and added Grep beyond minimal `[Read, Write]`. The most interesting cross-batch result: loading a module on Sonnet can shift behavior in non-improvement directions when the module's nuance gets surfaced over its base case. See [`../tests/skill-authoring.fixture.md`](../tests/skill-authoring.fixture.md) Run 2 for the full reading.
+- **`skill-authoring v2`** — original (N=1): baseline 5/5, treatment 4/5 (inverse delta). **Replication (3 additional runs) overturned this finding:** 3 of 3 replications produced minimal `[Read, Write]`. Effective 4-run aggregate: ~95% pass on the tools check. The original "inverse delta" was N=1 variance. The framework now ships the corrected reading: replicate before declaring a finding. See [`../tests/skill-authoring.fixture.md`](../tests/skill-authoring.fixture.md) for the walked-back commentary.
+
+## Validation tests (2026-05-06) — addressing the catches
+
+After noting the catches in the cross-batch finding, ran four validation tests:
+
+### 1. Replication of the headline inverse-delta finding
+
+**Test:** rerun skill-authoring v2 treatment 3× under identical conditions.
+**Result:** 3 of 3 replications produced `[Read, Write]` minimal tools. The original v2 result was a single-run variance event, not a systematic module effect.
+**Implication:** the framework's previously-headlined "inverse delta — module loading shifts behavior worse" claim was an N=1 artifact and has been corrected in `tests/skill-authoring.fixture.md`.
+
+### 2. OOD contamination control
+
+**Test:** designed a synthetic module with a fabricated numeric constant (`247` seconds for a retry decay interval) — a value that has no analogue in training data. Ran both halves of an A/B.
+**Result:** baseline (no synthetic module) produced exponential backoff with `30s / 60s` and did NOT contain `247`. Treatment (synthetic module applied) contained `247` multiple times.
+**Implication:** the contamination hypothesis is **empirically supported**. When the framework's distinctive markers aren't in training data, baselines don't reach for them. Previous "baseline already knew the answer" results were genuinely contamination, not just plausible-numerical-reaching.
+
+### 3. Independent pass-criteria writer (blind)
+
+**Test:** asked Sonnet to design pass criteria for `hooks.md` blind to the module's content. Compared to author-designed criteria.
+**Result:** 5 of 6 criteria reach from first principles (exit-zero, no-propagation, JS-file-guard, missing-tool-handling, non-interactive). One genuine divergence: blind reviewer said "stdout suppression" (don't pollute conversation context); author said "results surfaced." The criteria are mostly NOT author-bias artifacts — they're what a thoughtful reviewer would design from the task.
+**Implication:** the framework's pass criteria are largely first-principles-reachable. The 1-of-6 disagreement is a real design tension worth noting but not a systemic bias.
+
+### 4. runner.py validation
+
+**Test:** `python -m py_compile tests/runner.py` and exercising `_parse_fixture()` and `_find_module()` against the actual `discipline.fixture.md`.
+**Result:** syntax OK. Fixture parsing extracts module name, input length, criterion table rows correctly. Module path resolution succeeds.
+**Implication:** runner.py works at the parsing level. End-to-end validation (with API calls) requires `ANTHROPIC_API_KEY` and is left for adopters. **Adopters who clone and try it will be the first end-to-end validators.** That's the honest gap.
+
+### Updated Haiku-tier sample (12 of 14 Sonnet-no-delta modules tested)
+
+Adding 4 more Haiku A/Bs (memory-hygiene, refusal-and-recovery, tier-sizing, cost-accounting) brings the sampled set to 12 of 14:
+
+| Cross-tier outcome | Count | Modules |
+|---|---|---|
+| Strong behavioral delta on Haiku | 4 | failure-modes, verification, doubt-engine, tier-sizing |
+| Clear behavioral delta on Haiku | 4 | tool-use, delegation, cost-accounting, memory-hygiene |
+| Marginal / form-rigor only | 3 | hooks, precedent, multi-turn-negotiation |
+| No delta on either tier | 1 | refusal-and-recovery (well-calibrated on both) |
+
+**Updated cross-tier claim: 8 of 12 sampled Sonnet-no-delta modules (67%) show measurable behavioral delta on Haiku.** This is the strongest empirical signal the framework has produced about its tier-dependent value claim.
 
 ### Revised honest claim
 

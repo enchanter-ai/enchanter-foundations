@@ -38,6 +38,22 @@
 
 **Cross-run verdict: BOTH 5/5. NO BEHAVIORAL DELTA on this model** — the cap-in-prompt pattern is widely known; baseline produced equivalent budget controls (8 URLs, 8 KB per page, 400 words) without the module loaded. Likely contamination on the structural budget-cap pattern.
 
+## Run 3 — Haiku tier (2026-05-06)
+
+Re-ran the same A/B with `claude-haiku-4-5`.
+
+| Check | Haiku Baseline | Haiku Treatment |
+|---|---|---|
+| Numeric tool-call cap | ✗ vague "exhaust your search budget" — no specific number | ✓ "TOOL-CALL CAP: at most 15 tool calls" |
+| Partial-findings fallback | ✗ not specified | ✓ "if you reach 15 without completing, return your partial findings with a note" |
+| Self-applying condition | ~ instructed in scope language | ✓ explicit second-person "You may invoke at most 15…" |
+| Cap in body | n/a (no cap) | ✓ in body |
+| Task + scope fence | ✓ both present | ✓ both present plus the gate |
+
+**Haiku verdict: TREATMENT 5/5, BASELINE 1-2/5. CLEAR behavioral delta.**
+
+**Cross-tier:** Sonnet baseline produced equivalent budget controls without the module (likely Sonnet-tier contamination on cap-in-prompt patterns); Haiku baseline does NOT produce numeric caps without the module — defaults to vague budget language. **The module is load-bearing on Haiku for budget-gate authoring; on Sonnet it is documentation of behavior the model already produces.**
+
 ## Honest reading
 
 **The treatment subagent reported it could not Read `c:\git\enchanted-skills\agent-foundations\conduct\cost-accounting.md`.** The file *does* exist on disk and is committed to git — other treatment runs in this batch (delegation, hooks, etc.) successfully read files from the same directory. The most likely cause is a transient file-access issue or an agent-side path-resolution failure on this specific dispatch.

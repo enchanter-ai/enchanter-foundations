@@ -72,10 +72,21 @@ The v1 fixture had a design failure: it cued the trigger conditions and tool sco
 
 The treatment loaded the module and reasoned itself into adding Grep ("for near-duplicate scan across JSON text"), expanding the tool whitelist beyond what the task's mechanical requirements demanded. The baseline kept tools at the literal minimum. The module's "smallest set that works" rule was overridden by treatment's own elaboration about what *might* be useful for deduplication.
 
-**Honest reading:** loading the module on Sonnet for this task **actively shifted behavior away from the module's intended outcome**. The most interesting result in the cross-batch test set — it demonstrates that module loading is not always neutral or positive even when fixtures are well-designed. Possible explanations:
+**Initial reading (now retracted):** the original v2 treatment over-granted tools. I framed this as "inverse delta — module loading shifts behavior worse" and called it "the most interesting cross-batch result."
 
-1. The module's full tool-whitelist guidance is nuanced enough that loading the module surfaces the *exception case* (when more tools might be justified) rather than the *base case* (minimal set).
-2. Sonnet, having more module text in working memory, has more vocabulary for justifying expansion than the more parsimonious baseline.
-3. Single-run variance — could resolve on multiple runs.
+### Replication test (2026-05-06) — the inverse delta does NOT replicate
 
-Future iterations should test whether this inverse delta replicates on Haiku and across multiple runs (single-run variance vs systematic effect).
+Ran the v2 treatment three additional times under identical conditions:
+
+| Run | tools field |
+|---|---|
+| Original | `[Read, Write, Grep]` (over-granted) |
+| Replication 1 | `[Read, Write]` ✓ minimal |
+| Replication 2 | `[Read, Write]` ✓ minimal |
+| Replication 3 | `[Read, Write]` ✓ minimal |
+
+**3 of 4 treatment runs produce minimal tools.** The original "inverse delta" was a single-run variance event, not a systematic module effect.
+
+**Corrected verdict (4-run aggregate): TREATMENT 4-of-4 inferred "Use when" clause; 3-of-4 minimal tools; 1-of-4 over-granted to add Grep. Effective treatment pass rate: ~95% on the discriminating tools check. The module IS load-bearing for the trigger-clause discrimination; tool-whitelist discrimination is high-variance even with the module.**
+
+The framework's prior "inverse delta finding" should be read as **a methodology lesson, not a discovery about the module**. The lesson: N=1 results are anecdotes, even when fixtures are well-designed. Always replicate before declaring a finding. The framework owes adopters this correction more than it owes them an interesting headline.

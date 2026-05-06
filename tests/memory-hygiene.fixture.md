@@ -47,3 +47,18 @@ The treatment differs in a subtle way: it kept entry 6 (2-space indentation) in 
 - The numeric prune trigger (20 entries) is module-specific but didn't appear in either response — the discriminating signal failed to fire.
 - Both runs reasoned correctly about superseded vs. confirmed entries; the All-Add anti-pattern is widely understood.
 - A revised fixture should *test* the trigger more directly — e.g., "your working memory has N entries; should you prune?" rather than asking for per-entry verdicts.
+
+## Run 2 — Haiku tier (2026-05-06)
+
+Re-ran the same A/B with `claude-haiku-4-5` as the subject. Run-A baseline output not preserved verbatim, but the Haiku self-note captures the behavioral delta:
+
+| Behavior | Haiku Baseline | Haiku Treatment |
+|---|---|---|
+| Entry 2 (rejected camelCase draft) | write-to-state | **discard** (stricter relevance gate via three-test framework) |
+| Entry 4 (scratch token count) | discard ✓ | discard ✓ |
+| Entry 6 (2-space indent) | write-to-state | **discard** (treatment: "redundant confirmation; not architectural input") |
+| Entry 5 (open question) | keep | write-to-state ✓ |
+
+**Haiku verdict: behavioral delta** — treatment applies the three-test gate explicitly (direct relevance / dedup check / changes-next-action) and downgrades 2 of 6 entries from write-to-state to discard.
+
+**Cross-tier:** Sonnet treatment kept entry 6 in working memory; Haiku treatment discards it. The module's stricter gate fires on Haiku because Haiku without the module defaults to "keep more, just in case" — exactly the All-Add anti-pattern the module is designed to prevent.
