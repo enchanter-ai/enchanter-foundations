@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-05-05",
+  "total_events": 1300,
+  "plugins": {
+    "canary": {
+      "TP": 55,
+      "FP": 0,
+      "TN": 1245,
+      "FN": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "runtime_ms_avg": 0.0225,
+      "runtime_ms_p99": 0.239
+    },
+    "package-gate": {
+      "TP": 55,
+      "FP": 0,
+      "TN": 1245,
+      "FN": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "runtime_ms_avg": 0.0186,
+      "runtime_ms_p99": 0.523
+    },
+    "egress-monitor": {
+      "TP": 10,
+      "FP": 2,
+      "TN": 1240,
+      "FN": 48,
+      "precision": 0.8333,
+      "recall": 0.1724,
+      "runtime_ms_avg": 0.001,
+      "runtime_ms_p99": 0.009
+    },
+    "capability-fence": {
+      "TP": 15,
+      "FP": 0,
+      "TN": 1285,
+      "FN": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "runtime_ms_avg": 0.002,
+      "runtime_ms_p99": 0.016
+    },
+    "secret-scanner": {
+      "TP": 25,
+      "FP": 15,
+      "TN": 1260,
+      "FN": 0,
+      "precision": 0.625,
+      "recall": 1.0,
+      "runtime_ms_avg": 0.0015,
+      "runtime_ms_p99": 0.022
+    },
+    "vuln-detector": {
+      "TP": 30,
+      "FP": 0,
+      "TN": 1270,
+      "FN": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "runtime_ms_avg": 0.0352,
+      "runtime_ms_p99": 0.062
+    },
+    "action-guard": {
+      "TP": 15,
+      "FP": 0,
+      "TN": 1282,
+      "FN": 3,
+      "precision": 1.0,
+      "recall": 0.8333,
+      "runtime_ms_avg": 0.0027,
+      "runtime_ms_p99": 0.023
+    },
+    "audit-trail": {
+      "TP": 1300,
+      "FP": 0,
+      "TN": 0,
+      "FN": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "runtime_ms_avg": 0.0121,
+      "runtime_ms_p99": 0.094
+    }
+  }
+}

@@ -1,0 +1,88 @@
+name: SOC 2 Evidence Collection (daily)
+
+on:
+  schedule:
+    # 06:17 UTC daily — off-peak window per ops convention
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write   # required for cosign keyless signing
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout (all sibling repos via path)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python (stdlib only, no deps)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run evidence collector
+        id: collect
+        run: |
+          python agent-foundations/compliance/soc2-evidence/scripts/collect-evidence.py
+        continue-on-error: false
+
+      - name: Run completeness check
+        id: check
+        run: |
+          python agent-foundations/compliance/soc2-evidence/scripts/evidence-completeness-check.py
+        continue-on-error: true   # fail-open so the commit still lands
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3
+        with:
+          cosign-release: 'v2.2.4'
+
+      - name: Sign today's evidence bundle (keyless OIDC)
+        env:
+          COSIGN_EXPERIMENTAL: '1'
+        run: |
+          DAY=$(date -u +%Y-%m-%d)
+          BUNDLE="agent-foundations/compliance/soc2-evidence/collected/${DAY}"
+          if [ -d "${BUNDLE}" ]; then
+            (cd "${BUNDLE}" && find . -name '*.jsonl' -print0 | sort -z | xargs -0 sha256sum) > "${BUNDLE}/_manifest.sha256"
+            cosign sign-blob --yes --output-signature "${BUNDLE}/_manifest.sig" \
+                                  --output-certificate "${BUNDLE}/_manifest.cert" \
+                                  "${BUNDLE}/_manifest.sha256"
+          fi
+
+      - name: Create / update soc2-evidence branch via PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DAY=$(date -u +%Y-%m-%d)
+          BRANCH="soc2-evidence/${DAY}"
+          git config user.name "soc2-evidence-bot"
+          git config user.email "soc2-evidence-bot@users.noreply.github.com"
+          git checkout -b "${BRANCH}"
+          git add agent-foundations/compliance/soc2-evidence/collected/
+          git add agent-foundations/compliance/soc2-evidence/auditor-readiness-dashboard.md
+          if git diff --cached --quiet; then
+            echo "No evidence changes today — skipping PR."
+            exit 0
+          fi
+          git commit -m "soc2-evidence: collected ${DAY}" \
+                     -m "Automated daily evidence collection per evidence-collection-plan.md."
+          git push -u origin "${BRANCH}"
+          gh pr create --base soc2-evidence \
+                       --head "${BRANCH}" \
+                       --title "soc2-evidence: ${DAY}" \
+                       --body "Daily evidence bundle. Operator: merge weekly after reviewing the auditor-readiness-dashboard."
+
+      - name: Upload bundle artifact (90-day retention)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soc2-evidence-${{ github.run_id }}
+          path: agent-foundations/compliance/soc2-evidence/collected/
+          retention-days: 90
