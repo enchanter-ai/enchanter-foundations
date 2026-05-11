@@ -1,0 +1,8 @@
+{
+  "name": "enchanter-memory",
+  "version": "0.6.0",
+  "description": "Cross-session memory hygiene: memory-hygiene conduct (working memory, decay, recall verification) plus matching fixture.",
+  "dependencies": [
+    { "name": "enchanter-core", "version": "~0.6.0" }
+  ]
+}
