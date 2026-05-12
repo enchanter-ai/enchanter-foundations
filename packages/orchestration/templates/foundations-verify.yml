@@ -57,9 +57,13 @@ jobs:
       - name: fail if .foundations-lock changed (lock must be committed in sync with .foundations-versions)
         working-directory: plugin
         run: |
-          if ! git diff --quiet -- .foundations-lock; then
+          # `resolved_at` is a diagnostic timestamp; it differs on every bootstrap and is
+          # not used in --verify. Compare everything EXCEPT that one line.
+          if ! diff <(grep -v '^resolved_at:' .foundations-lock) \
+                    <(git show HEAD:.foundations-lock | grep -v '^resolved_at:') > /dev/null; then
             echo "::error::.foundations-lock is out of sync with .foundations-versions."
             echo "::error::Run ./scripts/bootstrap.sh locally and commit the updated lock."
-            git --no-pager diff -- .foundations-lock
+            diff <(grep -v '^resolved_at:' .foundations-lock) \
+                 <(git show HEAD:.foundations-lock | grep -v '^resolved_at:') || true
             exit 1
           fi
