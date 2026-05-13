@@ -6,7 +6,7 @@ Audience: any agent that logs failure observations. A controlled vocabulary for 
 
 Accumulation only learns if failure reasons are comparable. "It got worse" is not a signal — "F04 task-drift during axis-3 tightening" is. Every log row tags exactly one code.
 
-## The 22 canonical codes
+## The 28 canonical codes
 
 ### Generation failures
 
@@ -27,6 +27,8 @@ Accumulation only learns if failure reasons are comparable. "It got worse" is no
 | F08 | Tool mis-invocation | Wrong tool for the job (Bash for read, Write for small edit) | Default to the dedicated tool |
 | F09 | Parallel race | Two writes to the same file / same branch | Serialize or partition by path |
 | F10 | Destructive without confirmation | `rm`, `reset --hard`, `force push` without explicit yes | See [`./verification.md`](./verification.md) § Dry-run for destructive ops |
+| F26 | Reversibility blindness | Agent took a non-destructive but irreversible action without first classifying its reversibility | See [`./reversibility-foresight.md`](./reversibility-foresight.md) — classify before acting; confirmation scales with tier |
+| F28 | Skill-discoverability failure | Authored new tool/script/skill/module when an existing one in the project already covered the use case | See [`./prior-art-discovery.md`](./prior-art-discovery.md) — run the 5-target discovery pass before authoring; reuse, extend, or author-new with stated reason |
 
 ### Reasoning failures
 
@@ -36,6 +38,10 @@ Accumulation only learns if failure reasons are comparable. "It got worse" is no
 | F12 | Degeneration loop | Same edit, reverted, re-applied across iterations | No-regression contract; stop the axis |
 | F13 | Distractor pollution | Long irrelevant context bent the output | See [`./context.md`](./context.md) § Smallest-set rule |
 | F14 | Version drift | Used deprecated API / retired model ID / old flag | Check your model capability registry and current docs before emitting |
+| F23 | Sunk-cost iteration | Same artifact dispatched v0 → v0.1 → v0.2 with each failure for a new reason introduced by the prior fix; original question never answered | See [`./sunk-cost-iteration.md`](./sunk-cost-iteration.md) — after 2 INCONCLUSIVE/BLOCKED, surface the shape question before v(N+1) |
+| F24 | Substrate-blindness | Cross-session evidence (briefings, MEMORY, learnings, precedent) existed but the agent acted without consulting it | See [`./substrate-consumption.md`](./substrate-consumption.md) — at session start consume the plugin briefing, MEMORY, and relevant logs before the first non-trivial dispatch. |
+| F25 | Verdict inflation | Verdict (DEPLOY/PASS/COMPLETE/VERIFIED) emitted with confidence exceeding the evidence — evidence and metric are real, but n / sampling method / calibration band do not support the claim | See [`./verdict-calibration.md`](./verdict-calibration.md) — every verdict carries n, sampling method, and a calibration qualifier (Wilson CI, p-value, or {suggestive, inconclusive, decisive, BLOCKED}). |
+| F27 | Stale-precedent reliance | Cited self-authored memory / precedent / briefing that no longer reflects current state (renamed path, removed function, bumped schema, post-retirement pattern) | See [`./precedent-freshness.md`](./precedent-freshness.md) — verify Class-A surfaces with `Glob`/`Grep` and re-ground Class-B snapshots against `git log` before acting |
 
 ### Multi-agent and alignment failures
 
@@ -89,6 +95,12 @@ Some codes are single-occurrence — log and continue. Some require stopping:
 | F18, F21 | Halt, revert all artifact writes, log | Pause workflow — safety contract broken |
 | F19, F20 *(awareness)* | Log and continue (red-team eval, not runtime) | Escalate to safety review |
 | F22 | Revert verdict to HOLD, re-run with proper capability or amended bar | Halt — substrate / runtime mismatch; escalate to principal |
+| F23 | Log the inconclusive result and the introduced assumption; reset only on clean PASS or original-reason FAIL | Halt the iteration line; surface to principal with paths (a)/(b)/(c); do not dispatch v(N+1) without explicit authorization |
+| F24 | Re-read the briefing + MEMORY + relevant logs, restart the step with consumed evidence | Halt — the read protocol is being routinely skipped; surface to principal and reconcile + re-render briefings before resuming |
+| F25 | Downgrade verdict to match the calibration band; re-emit with n + method + qualifier attached | Halt — verdict-emission discipline is broken across the workflow; escalate to principal and re-baseline the verdict bar with explicit calibration requirements |
+| F26 | Revert if possible, log, surface to principal | Halt — agent's reversibility judgment is calibrated wrong; require explicit confirmation on all actions until reset |
+| F27 | Verify the cited surface; re-ground or discard the entry; proceed | Audit the memory store — systemic staleness; sweep by decay-signal class |
+| F28 | Revert the new artifact, run discovery pass, reconcile with prior art | Halt — repo has fragmenting capability surfaces; escalate to principal for a consolidation pass |
 
 ## Anti-patterns in logging
 
