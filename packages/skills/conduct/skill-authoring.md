@@ -85,7 +85,7 @@ The table below maps framework fields to their closest external analogues. **Fra
 marks fields with no external equivalent; **Framework-missing** marks external annotations the
 framework does not yet capture.
 
-| Field | agent-foundations | MCP 2025-11-25 | OpenAI SDK | Cursor |
+| Field | vis | MCP 2025-11-25 | OpenAI SDK | Cursor |
 |---|---|---|---|---|
 | Identity / name | `name` (required, kebab-case) | `name` in `Tool` object | tool `name` string | rule filename |
 | Discovery description | `description` (≤1024 chars, what + when) | `description` in `Tool` / `Prompt` object | tool `description` string | `description` in frontmatter |

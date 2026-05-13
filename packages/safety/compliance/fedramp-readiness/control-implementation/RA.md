@@ -8,7 +8,7 @@
 
 ## RA-1 — Risk Assessment Policy and Procedures
 - **Status:** Partial
-- **Evidence:** `agent-foundations/compliance/README.md`, conduct modules (`verification.md`, `failure-modes.md`).
+- **Evidence:** `vis/compliance/README.md`, conduct modules (`verification.md`, `failure-modes.md`).
 - **Gap:** No standalone Risk Assessment Policy doc.
 
 ## RA-2 — Security Categorization
@@ -65,7 +65,7 @@
 ## RA-7 — Risk Response
 - **Status:** Partial
 - **Evidence:**
-  - Each F-code finding has a runbook in `agent-foundations/runbooks/`.
+  - Each F-code finding has a runbook in `vis/runbooks/`.
   - F-001-F-024 closure tracked in `wixie/prompts/security-closure/results/synthesis.md`.
 - **Gap:** No formal POA&M artifact (gap list above is POA&M-shaped but not formal).
 

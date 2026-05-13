@@ -95,7 +95,7 @@ Per `clause-by-clause/clause-8-operation.md` §8.4:
 **Evidence:**
 
 - `aims-policy.md` §3
-- `agent-foundations/compliance/` (sibling regulatory maps)
+- `vis/compliance/` (sibling regulatory maps)
 - `aims-policy.md` §10.3 (advisory commitment)
 
 **Conformance:** Conformant at policy level; quantitative societal-impact metrics not produced.

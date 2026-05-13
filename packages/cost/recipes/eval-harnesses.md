@@ -1,6 +1,6 @@
 # Recipe — Eval Harnesses
 
-Benchmark suite reference: nine suites mapped to agent-foundations conduct modules and failure taxonomy codes.
+Benchmark suite reference: nine suites mapped to vis conduct modules and failure taxonomy codes.
 
 ## Purpose
 

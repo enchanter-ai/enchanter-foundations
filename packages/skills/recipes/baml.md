@@ -7,13 +7,13 @@ Read the paradigm note below before attempting to wire conduct the way you would
 ## Wire it up
 
 ```bash
-git submodule add https://github.com/enchanter-ai/agent-foundations vendor/foundations
+git submodule add https://github.com/enchanter-ai/vis vendor/vis
 ```
 
 Define a BAML function that includes conduct modules via Jinja:
 
 ```baml
-// vendor/foundations/conduct modules are plain Markdown — include them as Jinja partials.
+// vendor/vis/conduct modules are plain Markdown — include them as Jinja partials.
 // Render via your project's Jinja environment before passing to the BAML compiler,
 // or use a shared partial loader that maps conduct module names to their file contents.
 

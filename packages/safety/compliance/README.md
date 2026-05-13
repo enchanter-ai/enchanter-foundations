@@ -55,7 +55,7 @@ Plus this **README.md** (index + how-to-use guide).
    - `hydra/plugins/audit-trail/` (audit log)
    - `hydra/plugins/egress-shield/config/allowlist.yaml` (connection inventory, when shipped)
    - `wixie/plugins/inference-engine/state/` (continuous monitoring substrate)
-   - `agent-foundations/shared/conduct/*.md` (policy)
+   - `vis/shared/conduct/*.md` (policy)
 4. Note: external pentest report and Type II audit report are NOT in this package — those require external auditor engagement.
 
 ---
@@ -101,7 +101,7 @@ Plus this **README.md** (index + how-to-use guide).
 ### What the project HAS done
 
 - Implemented 73+ plugins across 11 repos with documented behavioral controls
-- Maintained 12 conduct modules under `agent-foundations/shared/conduct/`
+- Maintained 12 conduct modules under `vis/shared/conduct/`
 - Run a self-driven security-closure audit identifying 30 closures (F-001..F-030)
 - Shipped HMAC-chained audit logging, capability-fencing at PreToolUse, secret scanning, vulnerability detection, license gating, SBOM emission, and prompt-hardening adversarial testing
 - Built a cross-session inference substrate using Wald SPRT + Beta-Binomial statistics for continuous improvement
@@ -162,7 +162,7 @@ Procurement teams: this package is a **starting point** for diligence. To close 
 
 These documents are re-attested **quarterly**, or upon any material change to:
 
-- `agent-foundations/shared/conduct/*.md`
+- `vis/shared/conduct/*.md`
 - The plugin inventory (new plugins shipped, plugins retired)
 - The security-closure audit findings
 - The list of external connections in the egress allowlist
@@ -173,7 +173,7 @@ Next scheduled re-attestation: **2026-08-05.**
 
 ## Contact
 
-For procurement diligence, security questionnaires, or 3PAO scoping conversations, contact the project maintainer via the channels listed in `agent-foundations/README.md`.
+For procurement diligence, security questionnaires, or 3PAO scoping conversations, contact the project maintainer via the channels listed in `vis/README.md`.
 
 ---
 
@@ -188,7 +188,7 @@ For procurement diligence, security questionnaires, or 3PAO scoping conversation
 ## Related resources
 
 - Source closure audit: `wixie/prompts/security-closure/results/synthesis.md`
-- Conduct modules: `agent-foundations/shared/conduct/*.md`
-- Architecture diagrams: `agent-foundations/docs/architecture/highlevel.mmd`
-- Failure-mode taxonomy: `agent-foundations/shared/conduct/failure-modes.md`
-- Runbooks: `agent-foundations/runbooks/F0*.md`
+- Conduct modules: `vis/shared/conduct/*.md`
+- Architecture diagrams: `vis/docs/architecture/highlevel.mmd`
+- Failure-mode taxonomy: `vis/shared/conduct/failure-modes.md`
+- Runbooks: `vis/runbooks/F0*.md`

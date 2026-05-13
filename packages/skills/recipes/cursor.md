@@ -1,6 +1,6 @@
 # Recipe — Cursor
 
-How to adopt agent-foundations in [Cursor](https://cursor.com).
+How to adopt vis in [Cursor](https://cursor.com).
 
 ## What you get
 
@@ -9,7 +9,7 @@ Cursor reads `.cursor/rules/` (or legacy `.cursorrules`) at the workspace root f
 ## Drop-in
 
 ```bash
-git submodule add https://github.com/enchanter-ai/agent-foundations .cursor/foundations
+git submodule add https://github.com/enchanter-ai/vis .cursor/vis
 mkdir -p .cursor/rules
 ```
 
@@ -22,7 +22,7 @@ globs: ["**/*"]
 alwaysApply: true
 ---
 
-@.cursor/foundations/conduct/discipline.md
+@.cursor/vis/conduct/discipline.md
 ```
 
 The frontmatter says when the rule applies; the body inlines the module via `@` syntax. Cursor's recent rules format (`.mdc`) supports both globs and conditional application.
@@ -49,7 +49,7 @@ globs: ["**/*"]
 alwaysApply: true
 ---
 
-@.cursor/foundations/conduct/context.md
+@.cursor/vis/conduct/context.md
 ```
 
 ## Per-language scopes
@@ -63,7 +63,7 @@ globs: ["prompts/**/*.md", "agents/**/*.md"]
 alwaysApply: false
 ---
 
-@.cursor/foundations/conduct/tier-sizing.md
+@.cursor/vis/conduct/tier-sizing.md
 ```
 
 This avoids loading every module on every file edit — Cursor's effective context is finite.
@@ -72,7 +72,7 @@ This avoids loading every module on every file edit — Cursor's effective conte
 
 Engines are math-grounded primitives, not behavior rules — they don't belong in always-apply rules. Reference them on demand:
 
-- In chat: *"Build a trust score for these N observations using @.cursor/foundations/engines/trust-scoring.md"*
+- In chat: *"Build a trust score for these N observations using @.cursor/vis/engines/trust-scoring.md"*
 - In a rule scoped to relevant files: e.g., scope `pattern-detection.md` to security-scanning code paths.
 
 ## Composer-mode considerations
@@ -101,7 +101,7 @@ globs: ["**/*"]
 alwaysApply: true
 ---
 
-@.cursor/foundations/conduct/precedent.md
+@.cursor/vis/conduct/precedent.md
 
 Project precedent log: `state/precedent-log.md`. Grep before non-trivial Bash; append after unexpected failures.
 ```
@@ -168,20 +168,20 @@ in-scope file is open. Use this for modules that are relevant only in specific f
 (see the table above). The tradeoff is the same as whitelist inject: if the agent touches
 files outside the glob, the rule is not in effect.
 
-**Pattern C analog — pointer file.** A single index rule at `.cursor/rules/00-foundations.mdc`
+**Pattern C analog — pointer file.** A single index rule at `.cursor/rules/00-vis.mdc`
 can point to every other conduct module:
 
 ```markdown
 ---
-description: Agent-foundations conduct index — load before any task
+description: Vis conduct index — load before any task
 globs: ["**/*"]
 alwaysApply: true
 ---
 
-@.cursor/foundations/conduct/discipline.md
-@.cursor/foundations/conduct/verification.md
-@.cursor/foundations/conduct/tool-use.md
-@.cursor/foundations/conduct/failure-modes.md
+@.cursor/vis/conduct/discipline.md
+@.cursor/vis/conduct/verification.md
+@.cursor/vis/conduct/tool-use.md
+@.cursor/vis/conduct/failure-modes.md
 ```
 
 This is the Cursor equivalent of the discovery file pattern: one place to add, remove, or

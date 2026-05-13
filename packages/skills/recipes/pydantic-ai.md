@@ -5,7 +5,7 @@ Audience: teams building agents with Pydantic-AI. Conduct modules become `instru
 ## Wire it up
 
 ```bash
-git submodule add https://github.com/enchanter-ai/agent-foundations vendor/foundations
+git submodule add https://github.com/enchanter-ai/vis vendor/vis
 ```
 
 In Python:
@@ -15,7 +15,7 @@ from pathlib import Path
 from pydantic_ai import Agent, RunContext
 from pydantic import BaseModel
 
-ROOT = Path(__file__).parent / "vendor" / "foundations"
+ROOT = Path(__file__).parent / "vendor" / "vis"
 
 def load_conduct(*names: str) -> str:
     return "\n\n".join((ROOT / "conduct" / f"{n}.md").read_text() for n in names)

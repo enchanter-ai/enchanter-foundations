@@ -54,7 +54,7 @@ and splits the user-facing command space.
 
 - `Glob` for `SKILL.md` files; read frontmatter `description` and `when_to_use` lines.
 
-### 3. `state/foundations-proposals/` and similar in-flight workspaces
+### 3. `state/vis-proposals/` and similar in-flight workspaces
 
 Rationale: a sibling agent may be drafting the same module *right now*. Concurrent drafts
 are F09 parallel-race in waiting. Catching this before write is much cheaper than
@@ -106,7 +106,7 @@ these is true (state which, in the commit message):
 | Existing tool's contract doesn't match (different inputs, different invariants) | "prior art: `<path>`; contract mismatch on <field> — new tool needed" |
 | Existing tool is deprecated / scheduled for removal | "prior art: `<path>`; deprecated per <commit/note> — replacement" |
 | Existing tool's agent tier is wrong (Haiku-only when Opus needed, or vice versa) | "prior art: `<path>`; tier mismatch (<existing> vs. <required>) — new tool" |
-| Existing tool is in a different scope (private to plugin A, request is foundations-level) | "prior art: `<path>`; scope mismatch — promoting to <new scope>" |
+| Existing tool is in a different scope (private to plugin A, request is vis-level) | "prior art: `<path>`; scope mismatch — promoting to <new scope>" |
 | Existing tool's reuse cost (refactor, dependency, breaking change) exceeds new-author cost | "prior art: `<path>`; reuse cost <X>, new-author cost <Y> — new" |
 
 The rule is **check first, then decide** — not *reuse first*. Reuse is sometimes wrong;

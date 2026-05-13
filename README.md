@@ -1,6 +1,6 @@
-# agent-foundations
+# vis
 
-**The foundations for building durable AI agents — conduct, engines, taxonomy, and the math behind all three.**
+**The behavioral substrate for building durable AI agents — conduct, engines, taxonomy, and the math behind all three.**
 
 Most agent stacks ship with prompts, tools, and hopes. This repo gives you the missing layer: a model-agnostic framework of behavior rules, algorithmic primitives, a failure-mode taxonomy, and adoption recipes — battle-tested across production agent systems and packaged for drop-in adoption.
 
@@ -18,14 +18,14 @@ Every team building agents rediscovers the same problems:
 - *"Why does the subagent keep ignoring the rules we wrote?"* — descriptive prose doesn't enforce; conduct never reached the subagent.
 - *"Why are two of our agents working at cross-purposes?"* — inter-agent misalignment, not in the original failure taxonomy.
 
-The fixes for these are well-known to people who've shipped agents at scale. They're scattered across blog posts, internal docs, and folklore. **agent-foundations consolidates them into a single dependency-free framework.**
+The fixes for these are well-known to people who've shipped agents at scale. They're scattered across blog posts, internal docs, and folklore. **vis consolidates them into a single dependency-free framework.**
 
 ---
 
 ## What's in the box
 
 ```
-agent-foundations/
+vis/
 ├── conduct/      ← 19 behavior modules: discipline, context, verification,
 │                   delegation, tool-use, formatting, skill-authoring,
 │                   hooks, precedent, tier-sizing, web-fetch, failure-modes,
@@ -58,23 +58,23 @@ agent-foundations/
 
 ## Quickstart — 30 seconds
 
-One-liner installer (vendored copy at `./shared/foundations`, no `.git` footprint):
+One-liner installer (vendored copy at `./shared/vis`, no `.git` footprint):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/enchanter-ai/vis/main/install.sh | sh
 ```
 
 Pick a smaller install if you want less surface:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh -s -- --mode starter   # conduct/ + taxonomy/
-curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh -s -- --mode minimal   # conduct/ only
+curl -fsSL https://raw.githubusercontent.com/enchanter-ai/vis/main/install.sh | sh -s -- --mode starter   # conduct/ + taxonomy/
+curl -fsSL https://raw.githubusercontent.com/enchanter-ai/vis/main/install.sh | sh -s -- --mode minimal   # conduct/ only
 ```
 
 Or as a git submodule (history preserved, pinned via parent repo):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh -s -- --submodule
+curl -fsSL https://raw.githubusercontent.com/enchanter-ai/vis/main/install.sh | sh -s -- --submodule
 ```
 
 Full options: `install.sh --help`.
@@ -116,10 +116,10 @@ The **production starter pack** is `discipline.md` + `context.md` + `verificatio
 In your project's `CLAUDE.md`:
 
 ```markdown
-- @shared/foundations/conduct/discipline.md
-- @shared/foundations/conduct/verification.md
-- @shared/foundations/conduct/tool-use.md
-- @shared/foundations/conduct/failure-modes.md
+- @shared/vis/conduct/discipline.md
+- @shared/vis/conduct/verification.md
+- @shared/vis/conduct/tool-use.md
+- @shared/vis/conduct/failure-modes.md
 ```
 
 For runtime enforcement (not just description), wire hooks per [`recipes/claude-code.md`](recipes/claude-code.md) § Enforcement wiring. The framework now includes copy-paste shell skeletons in [`conduct/hooks.md`](conduct/hooks.md) § Starter patterns — PreToolUse deny, PostToolUse inject, Stop notify.
@@ -130,7 +130,7 @@ For runtime enforcement (not just description), wire hooks per [`recipes/claude-
 from pathlib import Path
 from agents import Agent
 
-ROOT = Path("vendor/agent-foundations/conduct")
+ROOT = Path("vendor/vis/conduct")
 modules = ["discipline", "verification", "tool-use", "delegation"]
 instructions = "\n\n".join((ROOT / f"{m}.md").read_text() for m in modules)
 
@@ -150,7 +150,7 @@ globs: ["**/*"]
 alwaysApply: true
 ---
 
-@.cursor/foundations/conduct/discipline.md
+@.cursor/vis/conduct/discipline.md
 ```
 
 Full guide: [`recipes/cursor.md`](recipes/cursor.md).
@@ -159,7 +159,7 @@ Full guide: [`recipes/cursor.md`](recipes/cursor.md).
 
 ```python
 system_prompt = "\n\n".join(
-    (foundations_root / "conduct" / f"{m}.md").read_text()
+    (vis_root / "conduct" / f"{m}.md").read_text()
     for m in ["discipline", "verification", "tool-use"]
 )
 ```
@@ -355,4 +355,4 @@ MIT. See [LICENSE](LICENSE). Use freely, including commercially. No warranty.
 
 Built on the shoulders of well-studied algorithms — Aho & Corasick, Shannon, Tarjan, Wald, Hunt & Szymanski, Zhang & Shasha, Jaccard, Salton — and the operational lessons of every engineer who's debugged an LLM agent in production. Recent additions draw on published research from Anthropic, OpenAI, DeepMind, Berkeley/Stanford (MAST), and the practitioner community surveyed at scale.
 
-If your team adopts agent-foundations and finds something missing, [open an issue](https://github.com/enchanter-ai/agent-foundations/issues). The framework grows by accumulation of named patterns, not by speculation.
+If your team adopts vis and finds something missing, [open an issue](https://github.com/enchanter-ai/vis/issues). The framework grows by accumulation of named patterns, not by speculation.

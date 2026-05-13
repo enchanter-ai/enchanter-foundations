@@ -1,7 +1,7 @@
 # Production Fire-and-Tune Launch — Operator Package
 
 **Status:** Draft v1 — operator runbook
-**Owner:** Agent Foundations (security + DX)
+**Owner:** Vis (security + DX)
 **Upstream artifact:** `security/synthetic-fire-2026-05/` (synthetic harness, regression baseline, gap analysis)
 **Downstream gate:** General Availability (GA) launch
 **Target window:** 16 weeks (3 cohorts, weeks 1-16+)
@@ -144,7 +144,7 @@ The customer can read every byte we ship by tailing the local audit log. There a
 
 ### 3.3 Transport + storage
 
-- Telemetry batched locally, shipped every 15 minutes over TLS to a single endpoint (`telemetry.agent-foundations.dev`, IP-pinned in shield config).
+- Telemetry batched locally, shipped every 15 minutes over TLS to a single endpoint (`telemetry.vis.dev`, IP-pinned in shield config).
 - Endpoint writes to an append-only object store (S3 with object-lock at-rest), 90-day TTL.
 - After 90 days, raw events are aggregated to weekly summaries (FP rate per shield, per cohort) and raw events deleted.
 - Aggregated summaries retained indefinitely for cross-cohort comparison.
@@ -177,7 +177,7 @@ A two-page PDF, written in plain English, ships with the pilot welcome email. It
 - The § 3.2 list, verbatim.
 - The 90-day retention.
 - The deletion procedure (one command + how to verify it ran).
-- Contact email for privacy questions (`privacy@agent-foundations.dev`, monitored daily).
+- Contact email for privacy questions (`privacy@vis.dev`, monitored daily).
 
 If a prospect's legal team objects to anything in the document, we negotiate — we do not assume.
 
@@ -240,7 +240,7 @@ Any one failing → continue pilot, extend by 2 weeks, re-evaluate.
 
 Operator deliverables before flipping the GA switch:
 
-- [ ] **Operator runbooks updated** in `agent-foundations/docs/runbooks/` for each shield, covering: deploy, configure, debug, rollback, escalate.
+- [ ] **Operator runbooks updated** in `vis/docs/runbooks/` for each shield, covering: deploy, configure, debug, rollback, escalate.
 - [ ] **Pricing page drafted** and reviewed by 3 design partners. Three tiers (solo / team / enterprise); team tier price calibrated to the Cohort C feedback.
 - [ ] **Support tier defined.** Tier 1 (community Discord, no SLA), Tier 2 (email, business-day SLA, included with team), Tier 3 (dedicated Slack channel, 4-hour SLA, enterprise add-on).
 - [ ] **SLA published.** 99.5% uptime for telemetry endpoint (the shields are local; SLA covers our side of the wire). No SLA on detection accuracy — the synthetic + real-traffic numbers stand as honest disclosure.

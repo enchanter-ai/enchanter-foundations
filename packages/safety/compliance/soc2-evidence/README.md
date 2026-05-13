@@ -32,8 +32,8 @@ soc2-evidence/
 
 ```bash
 # From repo root
-python agent-foundations/compliance/soc2-evidence/scripts/collect-evidence.py
-python agent-foundations/compliance/soc2-evidence/scripts/evidence-completeness-check.py
+python vis/compliance/soc2-evidence/scripts/collect-evidence.py
+python vis/compliance/soc2-evidence/scripts/evidence-completeness-check.py
 ```
 
 Both scripts are stdlib-only. Each prints a JSON summary on completion.

@@ -1,30 +1,30 @@
 #!/bin/sh
-# agent-foundations installer
+# vis installer
 #
-# One-liner (vendored install at ./shared/foundations):
-#   curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh
+# One-liner (vendored install at ./shared/vis):
+#   curl -fsSL https://raw.githubusercontent.com/enchanter-ai/vis/main/install.sh | sh
 #
 # With options:
-#   curl -fsSL https://raw.githubusercontent.com/enchanter-ai/agent-foundations/main/install.sh | sh -s -- --mode starter
-#   ./install.sh --target vendor/foundations --mode minimal
+#   curl -fsSL https://raw.githubusercontent.com/enchanter-ai/vis/main/install.sh | sh -s -- --mode starter
+#   ./install.sh --target vendor/vis --mode minimal
 #   ./install.sh --submodule
 
 set -eu
 
-REPO_URL="https://github.com/enchanter-ai/agent-foundations.git"
-TARGET="shared/foundations"
+REPO_URL="https://github.com/enchanter-ai/vis.git"
+TARGET="shared/vis"
 MODE="full"
 SUBMODULE=0
 
 usage() {
   cat <<'EOF'
-agent-foundations installer
+vis installer
 
 Usage:
   install.sh [--target DIR] [--mode MODE] [--submodule]
 
 Options:
-  --target DIR    Where to install. Default: shared/foundations
+  --target DIR    Where to install. Default: shared/vis
   --mode MODE     Which surfaces to keep:
                     full     all conduct + engines + taxonomy + recipes + docs (default)
                     starter  conduct/ + taxonomy/ + glossary + anti-patterns
@@ -36,7 +36,7 @@ Options:
 Examples:
   install.sh
   install.sh --mode starter
-  install.sh --target vendor/foundations --mode minimal
+  install.sh --target vendor/vis --mode minimal
   install.sh --submodule
 EOF
 }
@@ -99,7 +99,7 @@ KIND="vendored"
 
 cat <<EOF
 
-Installed agent-foundations at $TARGET (mode: $MODE, $KIND).
+Installed vis at $TARGET (mode: $MODE, $KIND).
 
 Next steps:
   1. Reference modules from your CLAUDE.md, system prompt, or .cursor/rules:
@@ -108,5 +108,5 @@ Next steps:
        @$TARGET/conduct/tool-use.md
 
   2. Pick a recipe for your host:
-       https://github.com/enchanter-ai/agent-foundations/tree/main/recipes
+       https://github.com/enchanter-ai/vis/tree/main/recipes
 EOF

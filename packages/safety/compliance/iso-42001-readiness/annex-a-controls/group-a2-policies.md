@@ -12,8 +12,8 @@
 
 **Implementation:**
 
-- `agent-foundations/compliance/iso-42001-readiness/aims-policy.md` — apex AIMS policy.
-- `agent-foundations/shared/conduct/` — twelve+ behavioral modules constituting operational policy.
+- `vis/compliance/iso-42001-readiness/aims-policy.md` — apex AIMS policy.
+- `vis/shared/conduct/` — twelve+ behavioral modules constituting operational policy.
 
 **Evidence:**
 
@@ -44,7 +44,7 @@
 
 **Evidence:**
 
-- `agent-foundations/compliance/` (sibling maps)
+- `vis/compliance/` (sibling maps)
 - `aims-policy.md` §6 (precedence rules)
 - `wixie/CLAUDE.md` (plugin-vs-policy precedence)
 

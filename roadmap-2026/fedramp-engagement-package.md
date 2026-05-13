@@ -1,7 +1,7 @@
 # FedRAMP Engagement Package — Operator Playbook
 
 **Status:** Pre-engagement architectural prerequisite. Not actionable until hosted control plane MVP is committed.
-**Owner:** Foundations lead + Compliance lead + Eng VP.
+**Owner:** Vis lead + Compliance lead + Eng VP.
 **Horizon:** 18–24 months from architectural commit to ATO.
 **Last revised:** 2026-05-05.
 
@@ -209,7 +209,7 @@ Agency ATO requires a federal agency willing to issue the authorization. The age
 
 ### 5.3 Sample pitch (capability-brief lead paragraph)
 
-> Enchanter is an agent-foundations platform that lets federal development teams use AI coding assistants without source code, prompts, or developer activity ever leaving the workstation. The hosted control plane — currently in design for FedRAMP Moderate authorization on AWS GovCloud — provides agency CIOs the audit trail, tenant isolation, and policy enforcement they require, while keeping the LLM-inference surface at the developer's provider of choice. We are seeking a sponsoring agency for our Agency ATO pursuit and offer pilot access in exchange for sponsorship.
+> Enchanter is an vis platform that lets federal development teams use AI coding assistants without source code, prompts, or developer activity ever leaving the workstation. The hosted control plane — currently in design for FedRAMP Moderate authorization on AWS GovCloud — provides agency CIOs the audit trail, tenant isolation, and policy enforcement they require, while keeping the LLM-inference surface at the developer's provider of choice. We are seeking a sponsoring agency for our Agency ATO pursuit and offer pilot access in exchange for sponsorship.
 
 ---
 

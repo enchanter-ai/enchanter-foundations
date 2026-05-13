@@ -1,12 +1,12 @@
 # Architecture
 
-How the four moving parts of agent-foundations compose. Read once; reference when extending.
+How the four moving parts of vis compose. Read once; reference when extending.
 
 ## The four parts
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│                         agent-foundations                          │
+│                         vis                          │
 └──────────────────────────────────────────────────────────────────┘
                                 │
         ┌──────────────────┬────┴────┬──────────────────┐

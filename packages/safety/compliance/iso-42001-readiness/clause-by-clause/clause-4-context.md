@@ -22,7 +22,7 @@ The enchanter-ai project is an open-source agent-substrate effort developing:
 - Observability (naga)
 - Decision-gating (crow)
 - Cost watchdog (pech)
-- Shared conduct + compliance (agent-foundations)
+- Shared conduct + compliance (vis)
 
 ### External issues
 
@@ -39,7 +39,7 @@ The enchanter-ai project is an open-source agent-substrate effort developing:
 
 ### Evidence
 
-- `agent-foundations/README.md` — project mission.
+- `vis/README.md` — project mission.
 - Per-repo `README.md` files — local scope statements.
 - `wixie/CLAUDE.md` — root-level conduct anchor.
 - `aims-policy.md` — formal scope.
@@ -81,7 +81,7 @@ See `aims-policy.md` §2.4 for the canonical list. Summary mapping:
 
 - `aims-policy.md` §2.4
 - `risk-register.md`
-- `agent-foundations/compliance/` README and sibling maps
+- `vis/compliance/` README and sibling maps
 
 ### Gap
 
@@ -151,7 +151,7 @@ The organization shall establish, implement, maintain, and continually improve a
 | Runtime controls | hydra (audit, capability, egress, action-guard), crow (decision-gate), naga (observe) |
 | Improvement loop | inference-engine substrate + per-plugin `learnings.md` |
 | Performance evaluation | HMAC audit log + SPRT-elevated patterns + DEPLOY-bar self-eval |
-| Documented information | `agent-foundations/compliance/` + per-plugin SKILL.md + conduct modules |
+| Documented information | `vis/compliance/` + per-plugin SKILL.md + conduct modules |
 | Roles | `aims-policy.md` §5 (Owner, Custodian, Auditor, Coordinator) |
 
 ### Process interactions
@@ -196,7 +196,7 @@ The organization shall establish, implement, maintain, and continually improve a
 
 - This entire readiness package.
 - `wixie/plugins/inference-engine/state/briefings/<plugin>.md`
-- `agent-foundations/shared/conduct/` (twelve modules).
+- `vis/shared/conduct/` (twelve modules).
 
 ### Gap
 

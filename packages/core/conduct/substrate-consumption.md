@@ -81,5 +81,5 @@ This module's own landing session may not consume prior briefings — the substr
 - [`./failure-modes.md`](./failure-modes.md) § F24 — the taxonomic entry this module operationalises.
 - [`./precedent.md`](./precedent.md) — the write-side complement; this module is the read-side.
 - [`./context.md`](./context.md) § U-curve placement — where in the context window prior-evidence reads belong (top-200-tokens slot).
-- [`../../shared/conduct/inference-substrate.md`](../../shared/conduct/inference-substrate.md) — the substrate's mutation contract and briefing-read guidance (wixie-local; this foundations module generalizes the read protocol across plugins).
+- [`../../shared/conduct/inference-substrate.md`](../../shared/conduct/inference-substrate.md) — the substrate's mutation contract and briefing-read guidance (wixie-local; this vis module generalizes the read protocol across plugins).
 - [`./capability-fidelity.md`](./capability-fidelity.md) § Anti-patterns — "loading the discovery tool only after writing the substitute artifact" is the same failure shape one layer down.

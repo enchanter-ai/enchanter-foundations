@@ -53,7 +53,7 @@ Per `failure-modes.md` § How to log a failure: every log row tags exactly one c
 
 **This is the clearest case of training contamination in the 2026-05-05 batch.** The baseline cited "F02 Fabrication" by code number, named the counter ("verify before citing; Glob/Grep first") verbatim, and even cited the supporting modules (`shared/conduct/verification.md`, `shared/conduct/tool-use.md`) by file name — all without having read any of them.
 
-This is conclusive evidence that the model has been trained on the agent-foundations failure-modes taxonomy (or a closely related taxonomy with identical code numbers and counters). The fixture cannot measure the module's marginal impact on this tier — both runs have effective access to the taxonomy regardless of explicit module loading.
+This is conclusive evidence that the model has been trained on the vis failure-modes taxonomy (or a closely related taxonomy with identical code numbers and counters). The fixture cannot measure the module's marginal impact on this tier — both runs have effective access to the taxonomy regardless of explicit module loading.
 
 ## Caveats
 

@@ -56,7 +56,7 @@ Re-ran the same A/B with `claude-haiku-4-5`.
 
 ## Honest reading
 
-**The treatment subagent reported it could not Read `c:\git\enchanted-skills\agent-foundations\conduct\cost-accounting.md`.** The file *does* exist on disk and is committed to git — other treatment runs in this batch (delegation, hooks, etc.) successfully read files from the same directory. The most likely cause is a transient file-access issue or an agent-side path-resolution failure on this specific dispatch.
+**The treatment subagent reported it could not Read `c:\git\enchanted-skills\vis\conduct\cost-accounting.md`.** The file *does* exist on disk and is committed to git — other treatment runs in this batch (delegation, hooks, etc.) successfully read files from the same directory. The most likely cause is a transient file-access issue or an agent-side path-resolution failure on this specific dispatch.
 
 **Doing the agent's job for it: rather than mark this as undetermined, the honest record is what we have — baseline 5/5 without the module loaded.** The baseline produced a comprehensive XML-formatted delegation prompt with three numeric budget caps (URLs, KB, words), a partial-findings fallback, and self-applying conditions. All five pass criteria met without the module.
 

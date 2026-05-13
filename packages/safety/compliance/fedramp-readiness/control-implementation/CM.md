@@ -8,7 +8,7 @@
 
 ## CM-1 — Configuration Management Policy and Procedures
 - **Status:** Partial
-- **Evidence:** `sylph/plugins/pr-lifecycle/`, `agent-foundations/shared/conduct/verification.md`, `agent-foundations/shared/conduct/discipline.md`
+- **Evidence:** `sylph/plugins/pr-lifecycle/`, `vis/shared/conduct/verification.md`, `vis/shared/conduct/discipline.md`
 - **Gap:** No standalone CM policy doc.
 
 ## CM-2 — Baseline Configuration
@@ -44,7 +44,7 @@
 
 ## CM-3(2) — Test / Validate / Document Changes
 - **Status:** Partial
-- **Evidence:** `sylph/pr-lifecycle/` test-before-push gate; `agent-foundations/shared/scripts/` lint + verify.
+- **Evidence:** `sylph/pr-lifecycle/` test-before-push gate; `vis/shared/scripts/` lint + verify.
 - **Gap:** No regression-test matrix for hook scripts.
 
 ## CM-3(4) — Security Representative

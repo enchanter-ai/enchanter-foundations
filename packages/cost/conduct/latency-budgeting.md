@@ -105,7 +105,7 @@ If a gate was triggered, the note line is mandatory. It is the signal the next s
 
 If your team already runs OpenTelemetry with the GenAI semantic conventions, the following mapping connects the framework's latency signals to your existing spans. The OTel GenAI spec covers "model names, token counts, latency, and cost metrics across different LLM providers" — the signals in this module map directly to span attributes in that specification.
 
-| agent-foundations signal | OTel GenAI attribute / span |
+| vis signal | OTel GenAI attribute / span |
 |--------------------------|----------------------------|
 | Total wall-clock estimate | Span duration on the root orchestrator span |
 | Per-subagent round-trips | Child span count under `gen_ai.operation.name = "agent"` |

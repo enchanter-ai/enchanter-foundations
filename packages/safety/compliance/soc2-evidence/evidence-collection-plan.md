@@ -44,7 +44,7 @@ Retention floor enforced by: `scripts/collect-evidence.py` writes 1y by default;
 
 | Crit | Producer | Format | Retention | Landing |
 |---|---|---|---|---|
-| CC1.1 | `agent-foundations/shared/conduct/` (file-hash + last-modified) | `config-hash` event | 7y | `collected/<d>/CC1.1.jsonl` |
+| CC1.1 | `vis/shared/conduct/` (file-hash + last-modified) | `config-hash` event | 7y | `collected/<d>/CC1.1.jsonl` |
 | CC1.2 | **GAP** — single-maintainer; emit `attestation` of org-structure state monthly | `attestation` | 7y | `collected/<d>/CC1.2.jsonl` (sparse) |
 | CC1.3 | `*/CLAUDE.md` tier model + `plugins/*/.claude-plugin/plugin.json` owner | `config-hash` | 7y | `collected/<d>/CC1.3.jsonl` |
 | CC1.4 | `shared/conduct/skill-authoring.md` + new-skill test gate results | `config-hash` + `metric` | 1y | `collected/<d>/CC1.4.jsonl` |
@@ -56,7 +56,7 @@ Retention floor enforced by: `scripts/collect-evidence.py` writes 1y by default;
 |---|---|---|---|---|
 | CC2.1 | per-prompt `metadata.json`, `learnings.md`, `state/precedent-log.md` | `log-tail` | 1y | `collected/<d>/CC2.1.jsonl` |
 | CC2.2 | `wixie/plugins/inference-engine/state/briefings/<plugin>.md` hash | `config-hash` | 1y | `collected/<d>/CC2.2.jsonl` |
-| CC2.3 | `agent-foundations/compliance/*.md`, repo READMEs | `config-hash` | 1y | `collected/<d>/CC2.3.jsonl` |
+| CC2.3 | `vis/compliance/*.md`, repo READMEs | `config-hash` | 1y | `collected/<d>/CC2.3.jsonl` |
 
 ### CC3 — Risk Assessment
 

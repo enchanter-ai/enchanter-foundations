@@ -39,7 +39,7 @@ iso-42001-readiness/
 ```
 
 Plus access to:
-- `agent-foundations/compliance/soc2-evidence/` (if SOC 2 in scope alongside)
+- `vis/compliance/soc2-evidence/` (if SOC 2 in scope alongside)
 - Repo read access for source code review
 - Personnel calendars for interviews
 

@@ -24,13 +24,13 @@ import uuid
 def synthetic_payload() -> dict:
     advisory_id = str(uuid.uuid4())
     return {
-        "text": "[verify.synthetic] agent-foundations operator-wiring integration check",
+        "text": "[verify.synthetic] vis operator-wiring integration check",
         "blocks": [
             {
                 "type": "header",
                 "text": {
                     "type": "plain_text",
-                    "text": "[VERIFY] agent-foundations operator-wiring check",
+                    "text": "[VERIFY] vis operator-wiring check",
                 },
             },
             {
@@ -38,7 +38,7 @@ def synthetic_payload() -> dict:
                 "fields": [
                     {"type": "mrkdwn", "text": "*Severity*\nINFO (synthetic)"},
                     {"type": "mrkdwn", "text": "*Category*\nverify.synthetic"},
-                    {"type": "mrkdwn", "text": "*Source*\nenchanter-agent-foundations"},
+                    {"type": "mrkdwn", "text": "*Source*\nenchanter-vis"},
                     {"type": "mrkdwn", "text": "*Action*\nNone — synthetic, ignore."},
                 ],
             },

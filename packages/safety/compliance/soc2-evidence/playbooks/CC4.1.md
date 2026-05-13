@@ -2,7 +2,7 @@
 
 - **Control ID:** CC4.1
 - **Control description:** The entity selects, develops, and performs ongoing and/or separate evaluations to ascertain whether the components of internal control are present and functioning.
-- **Evidence-collection mechanism:** Daily hash of `wixie/plugins/inference-engine/state/catalog.json` (reconcile output: Wald SPRT + Beta-Binomial posteriors, LLR, verdicts, weights). Quarterly self-attestation files added to `agent-foundations/compliance/`.
+- **Evidence-collection mechanism:** Daily hash of `wixie/plugins/inference-engine/state/catalog.json` (reconcile output: Wald SPRT + Beta-Binomial posteriors, LLR, verdicts, weights). Quarterly self-attestation files added to `vis/compliance/`.
 - **Producer (today):** `wixie/plugins/inference-engine/` (`reconcile` subcommand).
 - **Retention rule:** 7 years.
 - **Who reviews:** Repo maintainer weekly; security-closure owner quarterly self-attest.

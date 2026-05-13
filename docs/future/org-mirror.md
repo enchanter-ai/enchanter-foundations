@@ -4,7 +4,7 @@ This is a forward-looking record, **not a shipped layer**. The s2.0 lifecycle re
 
 ## Strongest analogue: Cargo source-replacement
 
-Cargo's `[source]` table in `.cargo/config.toml` lets a Cargo project resolve registry sources from an alternate location. Most production-grade analogue for "single internal mirror for all foundations consumers" in our ecosystem.
+Cargo's `[source]` table in `.cargo/config.toml` lets a Cargo project resolve registry sources from an alternate location. Most production-grade analogue for "single internal mirror for all vis consumers" in our ecosystem.
 
 > "Sources can be replaced with another source which acts as an overlay. The replacement source can be used as if it were the source being replaced."
 > — `https://doc.rust-lang.org/cargo/reference/source-replacement.html`, official, 2024
@@ -17,7 +17,7 @@ replace-with = "internal-mirror"
 registry = "https://internal-nexus.example.com/cargo"
 ```
 
-The same shape for our ecosystem would be a `.foundations-source` config (or env var) that overrides where `bootstrap.sh` clones `enchanter-foundations` from. Implementation precedent already exists in our bootstrap: `ENCHANTER_FOUNDATIONS_REPO` env var.
+The same shape for our ecosystem would be a `.vis-source` config (or env var) that overrides where `bootstrap.sh` clones `vis` from. Implementation precedent already exists in our bootstrap: `ENCHANTER_VIS_REPO` env var.
 
 ## Trigger conditions (build only when these fire)
 
@@ -27,7 +27,7 @@ Build the org-mirror layer **only** when at least one of:
 2. **SLA requiring github-uptime independence** — an enterprise customer demands the ecosystem keep working through a hypothetical github outage.
 3. **Volunteer mirror owner** — someone in the ecosystem has signed up to host + maintain the mirror; without an owner, ship the layer and it bit-rots.
 
-Below 1 of 3 is shipped: keep `bootstrap.sh`'s `ENCHANTER_FOUNDATIONS_REPO` env var (already in v0.6.0) as the escape hatch for ad-hoc operators who need it.
+Below 1 of 3 is shipped: keep `bootstrap.sh`'s `ENCHANTER_VIS_REPO` env var (already in v0.6.0) as the escape hatch for ad-hoc operators who need it.
 
 ## Why not build it now
 

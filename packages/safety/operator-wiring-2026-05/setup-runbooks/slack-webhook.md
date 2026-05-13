@@ -1,6 +1,6 @@
 # Slack Incoming Webhook Setup
 
-Wire agent-foundations advisories (MEDIUM/LOW severity) to a Slack channel via Incoming Webhooks. Time: ~5 minutes.
+Wire vis advisories (MEDIUM/LOW severity) to a Slack channel via Incoming Webhooks. Time: ~5 minutes.
 
 ## Prerequisites
 
@@ -10,10 +10,10 @@ Wire agent-foundations advisories (MEDIUM/LOW severity) to a Slack channel via I
 ## Step 1 — Create the Slack app + webhook
 
 1. https://api.slack.com/apps → "Create New App" → "From scratch".
-2. App name: `enchanter-agent-foundations`. Workspace: your target workspace.
+2. App name: `enchanter-vis`. Workspace: your target workspace.
 3. Features → **Incoming Webhooks** → toggle ON.
 4. Click "Add New Webhook to Workspace".
-5. Pick the target channel (e.g., `#agent-foundations-alerts`).
+5. Pick the target channel (e.g., `#vis-alerts`).
 6. Authorize. Slack returns a webhook URL like:
 
 ```
@@ -26,7 +26,7 @@ The URL is the **only** auth — anyone with it can post. Treat as a secret.
 
 ```bash
 export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/T0123456/B0123456/abcdefABCDEFabcdefABCDEF"
-export SLACK_DEFAULT_CHANNEL="#agent-foundations-alerts"
+export SLACK_DEFAULT_CHANNEL="#vis-alerts"
 ```
 
 (Channel is encoded in the webhook itself; `SLACK_DEFAULT_CHANNEL` is documentation, not enforcement.)
@@ -44,14 +44,14 @@ Expected output:
 [verify-slack] HTTP 200 OK
 [verify-slack] response body: ok
 [verify-slack] PASS - posted to channel
-[verify-slack] Manual: confirm message visible in #agent-foundations-alerts
+[verify-slack] Manual: confirm message visible in #vis-alerts
 ```
 
 ## Step 4 — Confirm visibility
 
 Open Slack → the channel you wired → look for a message authored by the webhook app titled:
 
-> `[verify.synthetic] agent-foundations operator-wiring integration check`
+> `[verify.synthetic] vis operator-wiring integration check`
 
 The post includes a structured block with severity, summary, and a "RESOLVE" placeholder link.
 
@@ -72,7 +72,7 @@ The emitter sends `application/json`:
       "fields": [
         { "type": "mrkdwn", "text": "*Severity*\nMEDIUM" },
         { "type": "mrkdwn", "text": "*Category*\nrate-limit" },
-        { "type": "mrkdwn", "text": "*Source*\nenchanter-agent-foundations" },
+        { "type": "mrkdwn", "text": "*Source*\nenchanter-vis" },
         { "type": "mrkdwn", "text": "*Trace*\n<https://dd-url|view>" }
       ]
     },
@@ -84,15 +84,15 @@ The emitter sends `application/json`:
 }
 ```
 
-Slack accepts up to 50 blocks per message; agent-foundations advisories use 3-4.
+Slack accepts up to 50 blocks per message; vis advisories use 3-4.
 
 ## Routing strategy
 
-| agent-foundations severity | Channel | Reason |
+| vis severity | Channel | Reason |
 |----------------------------|---------|--------|
-| HIGH | `#agent-foundations-pager` (mirror) | Backup of PagerDuty/Opsgenie for awareness |
-| MEDIUM | `#agent-foundations-alerts` | Primary review channel |
-| LOW | `#agent-foundations-noise` | Skim, batch-review |
+| HIGH | `#vis-pager` (mirror) | Backup of PagerDuty/Opsgenie for awareness |
+| MEDIUM | `#vis-alerts` | Primary review channel |
+| LOW | `#vis-noise` | Skim, batch-review |
 
 Use a separate webhook per channel. Webhooks are 1:1 with channels.
 

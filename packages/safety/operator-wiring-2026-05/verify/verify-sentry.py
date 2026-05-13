@@ -53,9 +53,9 @@ def envelope_event(event_id: str) -> bytes:
         "release": "operator-wiring@1.0.0",
         "tags": {"verify": "true", "synthetic": "true"},
         "extra": {
-            "note": "Synthetic event sent by verify-sentry.py from agent-foundations operator-wiring kit.",
+            "note": "Synthetic event sent by verify-sentry.py from vis operator-wiring kit.",
         },
-        "message": {"formatted": "verify.synthetic — agent-foundations integration check"},
+        "message": {"formatted": "verify.synthetic — vis integration check"},
         # AI-monitoring shaped breadcrumb
         "breadcrumbs": {
             "values": [

@@ -95,7 +95,7 @@ artifacts. This module does not redefine those bars.
 What this module adds is the contract that any project's verdict bar is incomplete
 without calibration fields. A wixie prompt that clears σ < 0.45 on n=1 is not DEPLOY;
 it is `DEPLOY (suggestive, n=1, one-shot)` — which under the wixie DEPLOY bar's
-intended use is functionally HOLD pending replication. Foundations sets the abstraction
+intended use is functionally HOLD pending replication. Vis sets the abstraction
 (every verdict carries n + method + qualifier); the plugin sets the concrete bar
 numbers and the rule for when `suggestive` is acceptable to ship versus when only
 `decisive` qualifies.

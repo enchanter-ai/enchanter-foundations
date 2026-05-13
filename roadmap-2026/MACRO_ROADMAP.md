@@ -134,7 +134,7 @@ Pentest report (Phase 1-2)                  SOC 2 Type II observation (6mo, Phas
 
 ## Documents shipped with this roadmap
 
-Each external item has its own micro-roadmap shipped to `agent-foundations/roadmap-2026/`:
+Each external item has its own micro-roadmap shipped to `vis/roadmap-2026/`:
 
 - `pentest-engagement-package.md` (vendor comparison + RFP + kickoff)
 - `soc2-engagement-package.md` (CPA firm comparison + observation start checklist)

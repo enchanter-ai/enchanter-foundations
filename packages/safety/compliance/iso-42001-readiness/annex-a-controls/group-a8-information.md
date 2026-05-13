@@ -33,14 +33,14 @@
 
 **Implementation:**
 
-- `agent-foundations/compliance/` — public self-attestation for procurement / customer use.
+- `vis/compliance/` — public self-attestation for procurement / customer use.
 - Quarterly self-re-attestation timestamp updated on each compliance map.
 - GitHub Security Advisories for Severity-Critical issues.
 - Public-by-default policy + conduct + compliance docs.
 
 **Evidence:**
 
-- `agent-foundations/compliance/iso-42001.md` (previous version)
+- `vis/compliance/iso-42001.md` (previous version)
 - This readiness package
 - GitHub Security Advisories (when issued)
 

@@ -1,6 +1,6 @@
 # Splunk Observability Cloud OTLP Setup
 
-Wire agent-foundations OTEL spans + logs to Splunk Observability Cloud (formerly SignalFx) via OTLP. Time: ~15 minutes.
+Wire vis OTEL spans + logs to Splunk Observability Cloud (formerly SignalFx) via OTLP. Time: ~15 minutes.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ Wire agent-foundations OTEL spans + logs to Splunk Observability Cloud (formerly
 
 1. Splunk Observability UI → Settings → Access Tokens.
 2. "+ New Token".
-3. Name: `enchanter-agent-foundations`.
+3. Name: `enchanter-vis`.
 4. Authorization scope: include **INGEST** (required for spans, metrics, logs).
 5. Copy the token string.
 
@@ -34,13 +34,13 @@ export SPLUNK_ACCESS_TOKEN="<paste-from-step-1>"
 export SPLUNK_REALM="us0"
 export OTEL_EXPORTER_OTLP_ENDPOINT="https://ingest.${SPLUNK_REALM}.signalfx.com/v2/trace/otlp"
 export OTEL_EXPORTER_OTLP_HEADERS="X-SF-Token=${SPLUNK_ACCESS_TOKEN}"
-export OTEL_SERVICE_NAME="enchanter-agent-foundations"
+export OTEL_SERVICE_NAME="enchanter-vis"
 export OTEL_RESOURCE_ATTRIBUTES="deployment.environment=prod,service.version=1.0.0"
 ```
 
 ## Step 4 — (Optional) Configure OpenTelemetry Collector
 
-For production, run the Splunk-distributed OpenTelemetry collector and point agent-foundations at it locally. Collector config snippet (`otel-collector.yaml`):
+For production, run the Splunk-distributed OpenTelemetry collector and point vis at it locally. Collector config snippet (`otel-collector.yaml`):
 
 ```yaml
 receivers:
@@ -59,7 +59,7 @@ service:
       exporters: [sapm]
 ```
 
-Then point agent-foundations at the local collector:
+Then point vis at the local collector:
 ```bash
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4318"
 unset OTEL_EXPORTER_OTLP_HEADERS  # collector adds the token
@@ -90,7 +90,7 @@ Expected output:
 ## Step 6 — Confirm visibility
 
 1. Splunk Observability UI → APM → Traces.
-2. Filter `service.name: enchanter-agent-foundations`.
+2. Filter `service.name: enchanter-vis`.
 3. The synthetic span (operation `verify.synthetic`) should appear within 60s.
 
 ## Troubleshooting

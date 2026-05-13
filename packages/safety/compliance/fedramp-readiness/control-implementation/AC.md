@@ -13,7 +13,7 @@
 ## AC-1 — Access Control Policy and Procedures
 - **Status:** Partial
 - **Responsibility:** Shared
-- **Evidence:** `agent-foundations/shared/conduct/delegation.md`, `agent-foundations/shared/conduct/skill-authoring.md`, `agent-foundations/compliance/README.md`
+- **Evidence:** `vis/shared/conduct/delegation.md`, `vis/shared/conduct/skill-authoring.md`, `vis/compliance/README.md`
 - **Gap:** No formal published "Access Control Policy" doc separate from the conduct modules; needs consolidation when hosted control plane is built.
 
 ## AC-2 — Account Management

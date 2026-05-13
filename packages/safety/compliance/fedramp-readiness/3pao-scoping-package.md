@@ -46,7 +46,7 @@ Read access required for assessment:
 
 | Repo | Path | Notes |
 |---|---|---|
-| agent-foundations | this repo | Conduct + runbooks + compliance |
+| vis | this repo | Conduct + runbooks + compliance |
 | hydra | `<repo-root>/hydra` | 15 defensive-control plugins |
 | wixie | `<repo-root>/wixie` | Prompt lifecycle + inference engine |
 | pech | `<repo-root>/pech` | Cost + budget controls |
@@ -62,7 +62,7 @@ Access mode: GitHub read-only collaborator or org-level read team. Avoid grantin
 
 ### 2.3 Boundary diagram
 
-Source-of-truth: `agent-foundations/docs/architecture/highlevel.mmd`.
+Source-of-truth: `vis/docs/architecture/highlevel.mmd`.
 
 Text rendering for 3PAO non-Mermaid consumers: see `ssp-skeleton.md` § 3.
 

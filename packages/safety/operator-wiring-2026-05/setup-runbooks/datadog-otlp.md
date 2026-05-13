@@ -1,6 +1,6 @@
 # Datadog OTLP Setup
 
-Wire agent-foundations OTEL spans to Datadog APM via the OTLP HTTP exporter. Time: ~15 minutes.
+Wire vis OTEL spans to Datadog APM via the OTLP HTTP exporter. Time: ~15 minutes.
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@ Wire agent-foundations OTEL spans to Datadog APM via the OTLP HTTP exporter. Tim
 ## Step 1 — Get the API key
 
 1. Datadog UI → Organization Settings → API Keys.
-2. Click "+ New Key", label it `enchanter-agent-foundations`.
+2. Click "+ New Key", label it `enchanter-vis`.
 3. Copy the key once — Datadog only shows it on creation.
 
 ## Step 2 — Identify the OTLP intake endpoint
@@ -36,7 +36,7 @@ export DD_API_KEY="<paste-from-step-1>"
 export DD_SITE="datadoghq.com"
 export OTEL_EXPORTER_OTLP_ENDPOINT="https://trace.agent.datadoghq.com"
 export OTEL_EXPORTER_OTLP_HEADERS="DD-API-KEY=${DD_API_KEY}"
-export OTEL_SERVICE_NAME="enchanter-agent-foundations"
+export OTEL_SERVICE_NAME="enchanter-vis"
 export OTEL_RESOURCE_ATTRIBUTES="deployment.environment=prod,service.version=1.0.0"
 ```
 
@@ -57,7 +57,7 @@ Expected output:
 [verify-otlp] HTTP 200 OK
 [verify-otlp] PASS - span accepted by collector
 [verify-otlp] Manual: confirm span visible in DD UI within 60s at:
-              https://app.datadoghq.com/apm/traces?query=service:enchanter-agent-foundations
+              https://app.datadoghq.com/apm/traces?query=service:enchanter-vis
 ```
 
 If the verify script returns non-200, see "Troubleshooting" below.
@@ -65,7 +65,7 @@ If the verify script returns non-200, see "Troubleshooting" below.
 ## Step 5 — Confirm visibility in UI
 
 1. Open `https://app.<DD_SITE>/apm/traces`.
-2. Filter `service:enchanter-agent-foundations`.
+2. Filter `service:enchanter-vis`.
 3. Within 60 seconds, the synthetic span (operation `verify.synthetic`) should appear.
 
 If it's visible — the integration is live. Flip the operator config flag.
@@ -82,4 +82,4 @@ If it's visible — the integration is live. Flip the operator config flag.
 
 ## Rotation
 
-API keys should rotate every 90 days. Update the secret store; restart the agent-foundations process.
+API keys should rotate every 90 days. Update the secret store; restart the vis process.

@@ -1,5 +1,5 @@
 """
-Reference implementation — stupid-agent fixture runner for agent-foundations conduct modules.
+Reference implementation — stupid-agent fixture runner for vis conduct modules.
 
 Reference implementation. Production adopters should swap for Promptfoo / Inspect-AI / their stack.
 This file is one possible runner; the framework is dependency-free Markdown + the shell installer.

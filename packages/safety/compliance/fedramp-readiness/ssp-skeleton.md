@@ -76,7 +76,7 @@ See `fedramp-boundary.md` § 3 for the canonical diagram. Text rendering retaine
 |            - gorgon (code analysis, 6)                     |
 |            - naga  (cross-repo + observability, 6)         |
 |            - djinn (drift + intent, 6)                     |
-|            - agent-foundations (conduct + runbooks)        |
+|            - vis (conduct + runbooks)        |
 |                                                            |
 |       Local state: audit-trail HMAC chain,                 |
 |                    inference-engine catalog, precedent     |
@@ -89,7 +89,7 @@ See `fedramp-boundary.md` § 3 for the canonical diagram. Text rendering retaine
 
 ### 3.2 Reference
 
-`agent-foundations/docs/architecture/highlevel.mmd` is the source-of-truth Mermaid diagram. The text rendering above is the FedRAMP-consumable form.
+`vis/docs/architecture/highlevel.mmd` is the source-of-truth Mermaid diagram. The text rendering above is the FedRAMP-consumable form.
 
 ### 3.3 Boundary delineation rationale
 
@@ -134,7 +134,7 @@ The full plugin inventory is in `fedramp-boundary.md` § 2.1. Summary:
 
 | Repo | Plugins | Role |
 |---|---|---|
-| agent-foundations | n/a (shared conduct + runbooks) | Behavioral defaults, taxonomy |
+| vis | n/a (shared conduct + runbooks) | Behavioral defaults, taxonomy |
 | hydra | 15 | Defensive controls |
 | wixie | 9 | Prompt lifecycle + inference engine |
 | pech | 7 | Cost + budget |
@@ -272,7 +272,7 @@ Drafts are reviewed by sylph/pr-lifecycle. Final versions are tagged in git so p
 - `incident-response-plan.md` — IR plan
 - `3pao-scoping-package.md` — 3PAO handoff
 - `hosted-control-plane-prerequisite.md` — architectural prerequisite (READ FIRST)
-- `agent-foundations/docs/architecture/highlevel.mmd` — architecture diagram
+- `vis/docs/architecture/highlevel.mmd` — architecture diagram
 
 ---
 

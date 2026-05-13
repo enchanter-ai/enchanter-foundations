@@ -67,7 +67,7 @@ Inheritance model: **enterprise inherits MAP/MEASURE/MANAGE technical controls f
 | emu/state-keeper | MEASURE | MS-2.4 (audit) | Session state persistence | — |
 | gorgon/gorgon-complexity | MEASURE | MS-1.1 (validity) | Cyclomatic + cognitive complexity gates on generated code | — |
 | gorgon/gorgon-deps | MEASURE | MS-1.1 (validity) | Dependency-graph analysis | — |
-| agent-foundations (this repo) | GOVERN | GV-1.1 (policy), GV-1.2 (accountability), GV-2.1 (training) | `shared/conduct/*.md` modules — coding conduct, verification, doubt engine, delegation, failure modes, tool use, formatting, skill authoring, hooks, precedent, web fetch, inference substrate | — |
+| vis (this repo) | GOVERN | GV-1.1 (policy), GV-1.2 (accountability), GV-2.1 (training) | `shared/conduct/*.md` modules — coding conduct, verification, doubt engine, delegation, failure modes, tool use, formatting, skill authoring, hooks, precedent, web fetch, inference substrate | — |
 
 ---
 
@@ -96,7 +96,7 @@ The GenAI Profile names twelve risks. Our coverage:
 
 ### GV-1.1 — Policies aligned to AI risk
 
-**Implementation:** `agent-foundations/shared/conduct/*.md` — twelve conduct modules governing every plugin's behavior:
+**Implementation:** `vis/shared/conduct/*.md` — twelve conduct modules governing every plugin's behavior:
 
 - `discipline.md` — coding conduct
 - `context.md` — attention budget
@@ -160,7 +160,7 @@ The vendor (enchanter-ai project maintainers) attests under self-assessment that
 1. The controls listed in §2 are implemented as described, in the form of code in the cited plugin paths.
 2. The gaps listed in §5 are honestly disclosed; no shipped-but-broken claims appear in §2.
 3. No third-party NIST AI RMF assessment has been performed. This document is suitable for procurement triage and gap analysis but does not substitute for an independent assessment.
-4. Re-attestation cadence: **quarterly**, or upon any material change to the conduct modules in `agent-foundations/shared/conduct/`.
+4. Re-attestation cadence: **quarterly**, or upon any material change to the conduct modules in `vis/shared/conduct/`.
 
 **Maintainer signature line:**
 
@@ -178,4 +178,4 @@ Organization: enchanter-ai project
 - SOC 2 Trust Services Criteria mapping: [`./soc2.md`](./soc2.md)
 - FedRAMP system boundary: [`./fedramp-boundary.md`](./fedramp-boundary.md)
 - Source closure audit: `wixie/prompts/security-closure/results/synthesis.md`
-- Conduct modules: `agent-foundations/shared/conduct/*.md`
+- Conduct modules: `vis/shared/conduct/*.md`

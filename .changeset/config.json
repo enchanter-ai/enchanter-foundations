@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/[email protected]/schema.json",
-  "changelog": ["@changesets/changelog-github", {"repo": "enchanter-ai/agent-foundations"}],
+  "changelog": ["@changesets/changelog-github", {"repo": "enchanter-ai/vis"}],
   "commit": false,
   "fixed": [],
   "linked": [],

@@ -2,18 +2,18 @@
 
 ## Shape of the problem
 
-The enchanter-ai ecosystem is **polyrepo by topology, monorepo by contract**. Each plugin repo (wixie, hydra, sylph, djinn, …) lives independently, but they all consume the same shared conduct modules, taxonomy, and engine derivations sourced here, in `agent-foundations`. A change to `shared/conduct/discipline.md` is, in practice, a change to every plugin's behavioral contract.
+The enchanter-ai ecosystem is **polyrepo by topology, monorepo by contract**. Each plugin repo (wixie, hydra, sylph, djinn, …) lives independently, but they all consume the same shared conduct modules, taxonomy, and engine derivations sourced here, in `vis`. A change to `shared/conduct/discipline.md` is, in practice, a change to every plugin's behavioral contract.
 
 That means versioning has to answer two questions at once:
 
 1. **What version of the conduct contract does this repo ship against?**
-2. **How does a conduct change propagate from `agent-foundations` to the rest of the ecosystem?**
+2. **How does a conduct change propagate from `vis` to the rest of the ecosystem?**
 
 ## Current strategy (Phase 1, 2026)
 
 ### Single source of truth
 
-`agent-foundations` is the canonical home for:
+`vis` is the canonical home for:
 
 - `shared/conduct/*.md` — behavioral modules
 - `taxonomy/` — failure-mode codes (F01-F14+)
@@ -24,23 +24,23 @@ No other repo edits these in place. Downstream plugins read them via the conduct
 
 ### Changesets governs versioning here
 
-This repo runs `@changesets/cli` against the meta-package `@enchanter-ai/agent-foundations-meta`. Every conduct, taxonomy, or engine change ships with a changeset. CI auto-opens a Versions PR; merging it bumps the version and (eventually) publishes.
+This repo runs `@changesets/cli` against the meta-package `@enchanter-ai/vis-meta`. Every conduct, taxonomy, or engine change ships with a changeset. CI auto-opens a Versions PR; merging it bumps the version and (eventually) publishes.
 
 See `.changeset/README.md` for the operator workflow.
 
 ### Per-plugin repos version independently
 
-Each plugin repo (wixie, hydra, …) maintains its own `package.json` and version cadence. They are NOT slaved to `agent-foundations` versions today. Reasons:
+Each plugin repo (wixie, hydra, …) maintains its own `package.json` and version cadence. They are NOT slaved to `vis` versions today. Reasons:
 
 - Plugins iterate on different cadences — wixie ships often, hydra rarely.
 - Plugin-internal changes (new skill, new hook) don't need a conduct bump to release.
 - Coupling all repos to one version would force lockstep releases that nobody wants.
 
-What plugins DO track: a `CONDUCT_VERSION` marker (or equivalent) noting which `agent-foundations` version their conduct mirror was sourced from. The conduct-abi.yml CI flags drift.
+What plugins DO track: a `CONDUCT_VERSION` marker (or equivalent) noting which `vis` version their conduct mirror was sourced from. The conduct-abi.yml CI flags drift.
 
 ### Conduct propagation via conduct-abi.yml (F-026)
 
-When `agent-foundations` ships a conduct change:
+When `vis` ships a conduct change:
 
 1. Changeset bumps the meta-package version on this repo.
 2. `conduct-abi.yml` workflow runs (on this repo's main).
@@ -53,7 +53,7 @@ This gives us monorepo-grade consistency (one source of truth, one version line)
 
 ### Conduct as an npm package
 
-Once conduct stabilizes, `agent-foundations` will publish `@enchanter-ai/conduct` to npm:
+Once conduct stabilizes, `vis` will publish `@enchanter-ai/conduct` to npm:
 
 - Each plugin repo adds `@enchanter-ai/conduct` as a dependency, pinned to a version range.
 - Plugin install/setup scripts copy the conduct modules out of `node_modules/@enchanter-ai/conduct/` into the plugin's `shared/conduct/` mirror at install time, so the SKILL.md `@`-references continue to resolve at the same paths.
@@ -70,7 +70,7 @@ When all three resolve, Phase 2 ships and changesets here will publish on tag in
 
 ## TL;DR
 
-- Conduct lives in `agent-foundations`.
+- Conduct lives in `vis`.
 - Changesets versions conduct here.
 - conduct-abi.yml propagates conduct to downstream plugin repos (Phase 1).
 - npm-published `@enchanter-ai/conduct` will replace the propagation pipeline (Phase 2, future).

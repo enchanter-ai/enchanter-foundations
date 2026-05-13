@@ -1,6 +1,6 @@
 # Recipe — LangChain
 
-How to adopt agent-foundations with [LangChain](https://python.langchain.com/) or [LangGraph](https://langchain-ai.github.io/langgraph/).
+How to adopt vis with [LangChain](https://python.langchain.com/) or [LangGraph](https://langchain-ai.github.io/langgraph/).
 
 ## What you get
 
@@ -9,7 +9,7 @@ LangChain exposes a system message (or `ChatPromptTemplate` system slot), a tool
 ## Wire it up
 
 ```bash
-git submodule add https://github.com/enchanter-ai/agent-foundations vendor/foundations
+git submodule add https://github.com/enchanter-ai/vis vendor/vis
 ```
 
 In Python, using LangChain's LCEL idioms:
@@ -19,7 +19,7 @@ from pathlib import Path
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.agents import create_react_agent, AgentExecutor
 
-ROOT = Path(__file__).parent / "vendor" / "foundations"
+ROOT = Path(__file__).parent / "vendor" / "vis"
 
 def load_conduct(*names: str) -> str:
     return "\n\n".join(

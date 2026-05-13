@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]  # enchanted-skills/
-EVIDENCE_DIR = ROOT / "agent-foundations" / "compliance" / "soc2-evidence"
+EVIDENCE_DIR = ROOT / "vis" / "compliance" / "soc2-evidence"
 COLLECTED = EVIDENCE_DIR / "collected"
 
 
@@ -90,7 +90,7 @@ def absent(plugin: str, reason: str) -> dict:
 # ---------------------------------------------------------------------------
 
 def cc1_1() -> list:
-    conduct = ROOT / "agent-foundations" / "shared" / "conduct"
+    conduct = ROOT / "vis" / "shared" / "conduct"
     if not conduct.exists():
         conduct = ROOT / "wixie" / "shared" / "conduct"
     hashes = dir_hashes(conduct, "*.md")
@@ -119,7 +119,7 @@ def cc1_3() -> list:
 def cc1_4() -> list:
     p = ROOT / "wixie" / "shared" / "conduct" / "skill-authoring.md"
     if not p.exists():
-        p = ROOT / "agent-foundations" / "shared" / "conduct" / "skill-authoring.md"
+        p = ROOT / "vis" / "shared" / "conduct" / "skill-authoring.md"
     h = file_hash(p)
     if not h:
         return [event("CC1.4", "skill-authoring", "attestation", absent("skill-authoring.md", "file missing"), "1y")]
@@ -155,9 +155,9 @@ def cc2_2() -> list:
 
 
 def cc2_3() -> list:
-    cdir = ROOT / "agent-foundations" / "compliance"
+    cdir = ROOT / "vis" / "compliance"
     hashes = dir_hashes(cdir, "*.md")
-    return [event("CC2.3", "agent-foundations/compliance", "config-hash", {"files": hashes}, "1y")]
+    return [event("CC2.3", "vis/compliance", "config-hash", {"files": hashes}, "1y")]
 
 
 def cc3_1() -> list:
@@ -319,7 +319,7 @@ def cc7_2() -> list:
 
 def cc7_3() -> list:
     return [event("CC7.3", "failure-modes", "log-tail",
-                  {"runbooks": "agent-foundations/runbooks/ F01-F21"}, "1y")]
+                  {"runbooks": "vis/runbooks/ F01-F21"}, "1y")]
 
 
 def cc7_4() -> list:

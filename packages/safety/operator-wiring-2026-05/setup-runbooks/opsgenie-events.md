@@ -1,6 +1,6 @@
 # Opsgenie Events Setup
 
-Wire agent-foundations advisories to an Opsgenie team via the Alerts API v2. Time: ~10 minutes.
+Wire vis advisories to an Opsgenie team via the Alerts API v2. Time: ~10 minutes.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ Wire agent-foundations advisories to an Opsgenie team via the Alerts API v2. Tim
 
 1. Opsgenie UI → Teams → pick the target team.
 2. Integrations tab → "Add Integration" → **API**.
-3. Name: `enchanter-agent-foundations`.
+3. Name: `enchanter-vis`.
 4. Enable: ON. Read access: ON. Suppress notifications: OFF (unless testing).
 5. Copy the **API Key** (UUID format).
 
@@ -30,7 +30,7 @@ Check your Opsgenie URL: `app.opsgenie.com` (US) vs `app.eu.opsgenie.com` (EU).
 ```bash
 export OPSGENIE_API_KEY="<uuid-from-step-1>"
 export OPSGENIE_URL="https://api.opsgenie.com/v2/alerts"
-export OPSGENIE_TEAM="agent-foundations-oncall"
+export OPSGENIE_TEAM="vis-oncall"
 ```
 
 ## Step 4 — Verify
@@ -54,7 +54,7 @@ Expected output:
 ## Step 5 — Confirm + clean up
 
 1. Opsgenie UI → Alerts.
-2. The synthetic alert is titled `verify.synthetic — agent-foundations integration check`, priority `P5`.
+2. The synthetic alert is titled `verify.synthetic — vis integration check`, priority `P5`.
 3. Close it manually (or use `--auto-resolve` on the verify script).
 
 ## Payload shape (reference)
@@ -66,17 +66,17 @@ The production emitter sends:
   "message": "string ≤ 130 chars",
   "alias": "<advisory-id>",
   "description": "string ≤ 15000 chars",
-  "responders": [{"name": "agent-foundations-oncall", "type": "team"}],
+  "responders": [{"name": "vis-oncall", "type": "team"}],
   "priority": "P1 | P2 | P3 | P4 | P5",
-  "source": "enchanter-agent-foundations",
-  "tags": ["agent-foundations", "<advisory-category>"],
+  "source": "enchanter-vis",
+  "tags": ["vis", "<advisory-category>"],
   "details": { "...": "..." }
 }
 ```
 
 The `alias` field deduplicates — same alias re-uses the same alert until closed.
 
-| agent-foundations severity | Opsgenie priority |
+| vis severity | Opsgenie priority |
 |----------------------------|-------------------|
 | HIGH                       | P1                |
 | MEDIUM                     | P3                |

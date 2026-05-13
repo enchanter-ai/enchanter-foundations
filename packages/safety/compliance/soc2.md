@@ -37,7 +37,7 @@ This document is **input** to that engagement, not a substitute.
 
 | Criterion | Description | enchanter-ai control | Evidence pointer | Readiness |
 |---|---|---|---|---|
-| CC1.1 | Demonstrates commitment to integrity & ethics | Conduct modules: `discipline.md`, `verification.md`, `doubt-engine.md` | `agent-foundations/shared/conduct/` | **Ready** |
+| CC1.1 | Demonstrates commitment to integrity & ethics | Conduct modules: `discipline.md`, `verification.md`, `doubt-engine.md` | `vis/shared/conduct/` | **Ready** |
 | CC1.2 | Board oversight | **GAP** — no formal board structure | — | **Not ready** — single-maintainer org |
 | CC1.3 | Management establishes structures, reporting lines | Tier model (Opus/Sonnet/Haiku) per CLAUDE.md; per-plugin owner field | `*/CLAUDE.md`, `*/plugins/*/.claude-plugin/plugin.json` | **Partial** |
 | CC1.4 | Commitment to attract/develop competent individuals | Skill-authoring discipline, conduct training material | `shared/conduct/skill-authoring.md` | **Ready** |
@@ -51,7 +51,7 @@ This document is **input** to that engagement, not a substitute.
 |---|---|---|---|---|
 | CC2.1 | Quality information for internal control | Per-plugin metadata.json; learnings.md; precedent-log.md | `wixie/prompts/<name>/`, `state/precedent-log.md` | **Ready** |
 | CC2.2 | Internal communication | Cross-session briefings via inference-engine substrate | `wixie/plugins/inference-engine/state/briefings/` | **Ready** |
-| CC2.3 | External communication | This compliance/ folder; per-repo READMEs | `agent-foundations/compliance/`, `*/README.md` | **Ready** |
+| CC2.3 | External communication | This compliance/ folder; per-repo READMEs | `vis/compliance/`, `*/README.md` | **Ready** |
 
 ---
 
@@ -106,7 +106,7 @@ This document is **input** to that engagement, not a substitute.
 |---|---|---|---|---|
 | CC7.1 | Detection of vulnerabilities | hydra/vuln-detector; Dependabot config; CodeQL workflow | `hydra/plugins/vuln-detector/`, `*/.github/workflows/codeql.yml` | **Partial** — OSV-Scanner cron not yet wired (F-009) |
 | CC7.2 | Detection of anomalies | hydra/audit-trail HMAC chain; naga/naga-observe drift detection; inference-engine SPRT | `hydra/plugins/audit-trail/scripts/log-event.sh`, `wixie/plugins/inference-engine/` | **Partial** — OTLP exporter pending (F-021/F-024) |
-| CC7.3 | Evaluates security events | F-code triage per `failure-modes.md`; runbooks F01-F21 | `shared/conduct/failure-modes.md`, `agent-foundations/runbooks/` | **Ready** |
+| CC7.3 | Evaluates security events | F-code triage per `failure-modes.md`; runbooks F01-F21 | `shared/conduct/failure-modes.md`, `vis/runbooks/` | **Ready** |
 | CC7.4 | Responds to security incidents | hydra/action-guard destructive-op gate; pager.ts (F-011 in progress) | `hydra/plugins/action-guard/` | **Partial** — pager not yet shipped |
 | CC7.5 | Recovers from identified incidents | Convergence loop revert-on-regression; precedent log of dead-ends | `wixie/plugins/convergence-engine/`, `state/precedent-log.md` | **Ready** |
 

@@ -1,5 +1,5 @@
 {
-  "name": "@enchanter-ai/agent-foundations-meta",
+  "name": "@enchanter-ai/vis-meta",
   "version": "0.1.0",
   "private": true,
   "description": "Meta-package for cross-repo versioning via changesets",

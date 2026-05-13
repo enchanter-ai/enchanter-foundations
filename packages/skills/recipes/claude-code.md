@@ -1,6 +1,6 @@
 # Recipe — Claude Code
 
-How to adopt agent-foundations in a [Claude Code](https://github.com/anthropics/claude-code) project.
+How to adopt vis in a [Claude Code](https://github.com/anthropics/claude-code) project.
 
 ## What you get
 
@@ -11,15 +11,15 @@ Claude Code reads `CLAUDE.md` files at every level of the project tree on sessio
 From your project root:
 
 ```bash
-git submodule add https://github.com/enchanter-ai/agent-foundations shared/foundations
+git submodule add https://github.com/enchanter-ai/vis shared/vis
 ```
 
 Or, for a vendored copy:
 
 ```bash
 mkdir -p shared
-git clone https://github.com/enchanter-ai/agent-foundations.git shared/foundations
-rm -rf shared/foundations/.git
+git clone https://github.com/enchanter-ai/vis.git shared/vis
+rm -rf shared/vis/.git
 ```
 
 Then in your project's `CLAUDE.md`, reference what you want loaded into context:
@@ -29,13 +29,13 @@ Then in your project's `CLAUDE.md`, reference what you want loaded into context:
 
 These apply to every skill in this project.
 
-- @shared/foundations/conduct/discipline.md — coding conduct
-- @shared/foundations/conduct/context.md — attention-budget hygiene
-- @shared/foundations/conduct/verification.md — independent checks
-- @shared/foundations/conduct/delegation.md — subagent contracts
-- @shared/foundations/conduct/tool-use.md — tool invocation hygiene
-- @shared/foundations/conduct/precedent.md — log self-observed failures
-- @shared/foundations/conduct/failure-modes.md — 14-code taxonomy
+- @shared/vis/conduct/discipline.md — coding conduct
+- @shared/vis/conduct/context.md — attention-budget hygiene
+- @shared/vis/conduct/verification.md — independent checks
+- @shared/vis/conduct/delegation.md — subagent contracts
+- @shared/vis/conduct/tool-use.md — tool invocation hygiene
+- @shared/vis/conduct/precedent.md — log self-observed failures
+- @shared/vis/conduct/failure-modes.md — 14-code taxonomy
 ```
 
 The `@path/to/file.md` syntax tells Claude Code to inline the file at session start. Only reference the modules you want loaded; loading all twelve is overkill for most projects.
@@ -62,19 +62,19 @@ If you want runtime guards instead of memorized rules, the hook contract from [`
     "PostToolUse": [
       {
         "matcher": "Write|Edit",
-        "hooks": [{ "type": "command", "command": "shared/foundations/scripts/lint-after-edit.sh" }]
+        "hooks": [{ "type": "command", "command": "shared/vis/scripts/lint-after-edit.sh" }]
       }
     ],
     "UserPromptSubmit": [
       {
-        "hooks": [{ "type": "command", "command": "shared/foundations/scripts/inject-checkpoint.sh" }]
+        "hooks": [{ "type": "command", "command": "shared/vis/scripts/inject-checkpoint.sh" }]
       }
     ]
   }
 }
 ```
 
-(The `scripts/` referenced are placeholders — agent-foundations ships docs and references; runnable scripts live in the adopting project.)
+(The `scripts/` referenced are placeholders — vis ships docs and references; runnable scripts live in the adopting project.)
 
 ## Skills (optional)
 
@@ -115,7 +115,7 @@ Reference both in your `CLAUDE.md`:
 ## Verifying the adoption
 
 1. Open the project in Claude Code.
-2. Ask: *"What modules are you loading from agent-foundations?"*
+2. Ask: *"What modules are you loading from vis?"*
 3. Claude Code should list the modules referenced in your `CLAUDE.md`.
 
 If a referenced module isn't being read, check the path — `@` syntax is relative to the project root.

@@ -9,12 +9,12 @@
 
 ## IR-1 — Incident Response Policy and Procedures
 - **Status:** Implemented (per-failure-code runbooks)
-- **Evidence:** `agent-foundations/runbooks/F0*.md` — F01 through F21 documented runbooks covering each named failure mode from `agent-foundations/shared/conduct/failure-modes.md`.
+- **Evidence:** `vis/runbooks/F0*.md` — F01 through F21 documented runbooks covering each named failure mode from `vis/shared/conduct/failure-modes.md`.
 - **Gap:** No single "IR Policy" cover doc; runbooks are per-code. Consolidated in `../incident-response-plan.md`.
 
 ## IR-2 — Incident Response Training
 - **Status:** Partial
-- **Evidence:** Conduct modules are the training material — every contributor reads `agent-foundations/shared/conduct/*.md`. `failure-modes.md` is the named-taxonomy training.
+- **Evidence:** Conduct modules are the training material — every contributor reads `vis/shared/conduct/*.md`. `failure-modes.md` is the named-taxonomy training.
 - **Gap:** No formal training-completion attestation.
 
 ## IR-2(1) — Simulated Events

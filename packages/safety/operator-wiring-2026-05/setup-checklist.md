@@ -1,4 +1,4 @@
-# Operator Setup Checklist — agent-foundations wiring
+# Operator Setup Checklist — vis wiring
 
 Goal: take the kit from "files on disk" to "live integration" in one focused session per integration. Run top-to-bottom once; check each box as you go.
 
@@ -85,7 +85,7 @@ For each integration: open the runbook, follow it end-to-end, run the verify, co
 14. [ ] Run `python3 verify/verify-otlp.py "$OTEL_EXPORTER_OTLP_ENDPOINT" "$DD_API_KEY"`.
     - Expected: `HTTP 200` then `PASS`.
     - If FAIL: see runbook troubleshooting table.
-15. [ ] Open Datadog APM → filter `service:enchanter-agent-foundations` → confirm synthetic span visible.
+15. [ ] Open Datadog APM → filter `service:enchanter-vis` → confirm synthetic span visible.
 
 ### Sentry (10 min)
 
@@ -150,8 +150,8 @@ For each integration: open the runbook, follow it end-to-end, run the verify, co
 
 43. [ ] Confirm all secrets live in the secret manager, not on disk:
     ```
-    grep -r "sk-" /path/to/agent-foundations/  # adapt to your secret prefixes
-    grep -r "events.pagerduty.com/v2" /path/to/agent-foundations/  # ensure no inline keys
+    grep -r "sk-" /path/to/vis/  # adapt to your secret prefixes
+    grep -r "events.pagerduty.com/v2" /path/to/vis/  # ensure no inline keys
     ```
     - Expected: no hits, or only documentation hits in `setup-runbooks/`.
 
@@ -166,11 +166,11 @@ For each integration: open the runbook, follow it end-to-end, run the verify, co
 
 ---
 
-## Phase 4 — Handoff to agent-foundations runtime (10 min)
+## Phase 4 — Handoff to vis runtime (10 min)
 
-46. [ ] Update agent-foundations' `paging-config.json` / `otel-config.yaml` with the live endpoints and references to secret-manager paths (not raw values).
+46. [ ] Update vis' `paging-config.json` / `otel-config.yaml` with the live endpoints and references to secret-manager paths (not raw values).
 
-47. [ ] Restart agent-foundations runtime with the new config.
+47. [ ] Restart vis runtime with the new config.
 
 48. [ ] Trigger one real low-severity advisory (e.g., a synthetic MEDIUM event from inside the runtime, not the verify scripts) and confirm:
     - [ ] PagerDuty/Opsgenie incident visible (and auto-resolves per dedup_key)
@@ -186,6 +186,6 @@ For each integration: open the runbook, follow it end-to-end, run the verify, co
 
 ## Done
 
-When all 50 boxes are checked, agent-foundations is wired. From this point on, integration changes are config edits + a verify run — no kit code changes needed.
+When all 50 boxes are checked, vis is wired. From this point on, integration changes are config edits + a verify run — no kit code changes needed.
 
 If a step fails: re-read the relevant runbook's "Troubleshooting" table. Failures in this kit are almost always (1) wrong endpoint for region, (2) wrong header name, (3) key with insufficient scope, or (4) egress blocked.

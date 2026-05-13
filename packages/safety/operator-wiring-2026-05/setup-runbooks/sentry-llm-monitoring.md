@@ -1,6 +1,6 @@
 # Sentry LLM Monitoring Setup
 
-Wire agent-foundations LLM traces + errors to Sentry's AI Monitoring product. Time: ~10 minutes.
+Wire vis LLM traces + errors to Sentry's AI Monitoring product. Time: ~10 minutes.
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@ Wire agent-foundations LLM traces + errors to Sentry's AI Monitoring product. Ti
 
 1. Sentry UI → Projects → "+ Create Project".
 2. Platform: pick **Python** (or your runtime). Project type: **AI / LLM** if available; otherwise pick **Python** and enable AI Monitoring under Project Settings → AI Monitoring.
-3. Name: `enchanter-agent-foundations`.
+3. Name: `enchanter-vis`.
 4. After creation, Sentry shows the DSN. Copy it.
 
 A DSN looks like:
@@ -54,7 +54,7 @@ Expected output:
 2. Filter for `verify.synthetic` or the event ID from the verify script output.
 3. The event should appear within 30 seconds.
 
-For AI Monitoring view: Insights → AI → LLM Monitoring → filter on service `enchanter-agent-foundations`.
+For AI Monitoring view: Insights → AI → LLM Monitoring → filter on service `enchanter-vis`.
 
 ## Step 5 — Configure issue routing (optional but recommended)
 

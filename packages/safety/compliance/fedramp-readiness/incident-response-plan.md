@@ -44,7 +44,7 @@ Single-maintainer reality is honestly disclosed; FedRAMP authorization requires 
 
 ### 3.2 Mapping to failure-mode codes
 
-Every incident maps to one or more F-codes from `agent-foundations/shared/conduct/failure-modes.md`. Code drives the runbook:
+Every incident maps to one or more F-codes from `vis/shared/conduct/failure-modes.md`. Code drives the runbook:
 
 | F-code | Domain | Runbook |
 |---|---|---|
@@ -64,7 +64,7 @@ Every incident maps to one or more F-codes from `agent-foundations/shared/conduc
 | F14 | Version drift | `runbooks/F14.md` |
 | F-001..F-024 | Security closure | `wixie/prompts/security-closure/results/synthesis.md` |
 
-(Plus operational F-codes F15-F21 documented in `agent-foundations/runbooks/` as they are minted.)
+(Plus operational F-codes F15-F21 documented in `vis/runbooks/` as they are minted.)
 
 ---
 
@@ -214,5 +214,5 @@ Each tabletop produces: (1) scenario walkthrough, (2) detected vs. missed signal
 - `control-implementation/IR.md` (per-control IR evidence)
 - `conmon-plan.md` § 7 (escalation thresholds)
 - `hosted-control-plane-prerequisite.md` (blocks F-011, US-CERT)
-- `agent-foundations/runbooks/F*.md` (per-F-code runbooks)
-- `agent-foundations/shared/conduct/failure-modes.md` (taxonomy)
+- `vis/runbooks/F*.md` (per-F-code runbooks)
+- `vis/shared/conduct/failure-modes.md` (taxonomy)

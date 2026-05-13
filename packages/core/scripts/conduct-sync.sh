@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # conduct-sync.sh — propagate canonical conduct modules to consumer repos.
 # Usage: conduct-sync.sh <consumer-repo-path>
-# Run from agent-foundations root; copies agent-foundations/conduct/*.md
+# Run from vis root; copies vis/conduct/*.md
 # into <consumer>/shared/conduct/, preserving CONDUCT_SOURCE.md.
 set -euo pipefail
 CANONICAL_DIR="$(cd "$(dirname "$0")/.." && pwd)/conduct"

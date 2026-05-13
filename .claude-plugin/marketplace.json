@@ -1,8 +1,8 @@
 {
-  "name": "enchanter-foundations",
+  "name": "vis",
   "owner": { "name": "enchanter-ai" },
   "metadata": {
-    "description": "Behavioral foundations for the @enchanter-ai ecosystem — conduct-as-code, failure taxonomy, engines, recipes. Split into 7 focused plugins.",
+    "description": "Behavioral substrate for the @enchanter-ai ecosystem — conduct-as-code, failure taxonomy, engines, recipes. Split into 7 focused plugins.",
     "version": "0.6.0",
     "pluginRoot": "./packages"
   },

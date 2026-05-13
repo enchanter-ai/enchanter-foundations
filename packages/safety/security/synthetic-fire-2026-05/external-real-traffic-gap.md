@@ -95,7 +95,7 @@ Production attackers will:
   4 weeks of it yet.
 - `hydra/plugins/canary/state/hits.ndjson` — every canary fire is
   recorded. Empty today; would be populated on first real injection.
-- `agent-foundations/compliance/soc2-evidence/evidence-collection-plan.md`
+- `vis/compliance/soc2-evidence/evidence-collection-plan.md`
   — describes the cron-driven evidence-collection job that would
   aggregate per-plugin advisory counts weekly.
 

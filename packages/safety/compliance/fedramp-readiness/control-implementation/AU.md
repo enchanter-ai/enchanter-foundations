@@ -8,7 +8,7 @@
 
 ## AU-1 — Audit and Accountability Policy and Procedures
 - **Status:** Partial
-- **Evidence:** `hydra/plugins/audit-trail/` README; `agent-foundations/compliance/README.md`; conduct modules.
+- **Evidence:** `hydra/plugins/audit-trail/` README; `vis/compliance/README.md`; conduct modules.
 - **Gap:** No standalone policy document; need consolidation when hosted.
 
 ## AU-2 — Event Logging

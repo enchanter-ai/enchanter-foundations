@@ -29,13 +29,13 @@ jobs:
       - name: Run evidence collector
         id: collect
         run: |
-          python agent-foundations/compliance/soc2-evidence/scripts/collect-evidence.py
+          python vis/compliance/soc2-evidence/scripts/collect-evidence.py
         continue-on-error: false
 
       - name: Run completeness check
         id: check
         run: |
-          python agent-foundations/compliance/soc2-evidence/scripts/evidence-completeness-check.py
+          python vis/compliance/soc2-evidence/scripts/evidence-completeness-check.py
         continue-on-error: true   # fail-open so the commit still lands
 
       - name: Install cosign
@@ -48,7 +48,7 @@ jobs:
           COSIGN_EXPERIMENTAL: '1'
         run: |
           DAY=$(date -u +%Y-%m-%d)
-          BUNDLE="agent-foundations/compliance/soc2-evidence/collected/${DAY}"
+          BUNDLE="vis/compliance/soc2-evidence/collected/${DAY}"
           if [ -d "${BUNDLE}" ]; then
             (cd "${BUNDLE}" && find . -name '*.jsonl' -print0 | sort -z | xargs -0 sha256sum) > "${BUNDLE}/_manifest.sha256"
             cosign sign-blob --yes --output-signature "${BUNDLE}/_manifest.sig" \
@@ -65,8 +65,8 @@ jobs:
           git config user.name "soc2-evidence-bot"
           git config user.email "soc2-evidence-bot@users.noreply.github.com"
           git checkout -b "${BRANCH}"
-          git add agent-foundations/compliance/soc2-evidence/collected/
-          git add agent-foundations/compliance/soc2-evidence/auditor-readiness-dashboard.md
+          git add vis/compliance/soc2-evidence/collected/
+          git add vis/compliance/soc2-evidence/auditor-readiness-dashboard.md
           if git diff --cached --quiet; then
             echo "No evidence changes today — skipping PR."
             exit 0
@@ -84,5 +84,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: soc2-evidence-${{ github.run_id }}
-          path: agent-foundations/compliance/soc2-evidence/collected/
+          path: vis/compliance/soc2-evidence/collected/
           retention-days: 90

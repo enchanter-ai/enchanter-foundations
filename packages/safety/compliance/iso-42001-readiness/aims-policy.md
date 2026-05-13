@@ -58,7 +58,7 @@ Where ISO 42001 assumes an enterprise org chart and we operate at a different sc
 | Crow | Decision-gate, human-in-loop | `crow/` |
 | Pech | Budget tracking, cost watchdog | `pech/` |
 | Lich | Cross-runtime adapter parity | `lich/` |
-| Agent-foundations | Shared conduct, compliance, references | `agent-foundations/` |
+| Vis | Shared conduct, compliance, references | `vis/` |
 
 ### 2.2 In-scope activities
 
@@ -375,7 +375,7 @@ AIMS Policy (this document)
 
 ### 8.3 Channels
 
-- Source-of-truth: `agent-foundations/compliance/` (this folder + siblings).
+- Source-of-truth: `vis/compliance/` (this folder + siblings).
 - Discussion: GitHub issues / PRs.
 - Incident: GitHub Security Advisories.
 
@@ -385,7 +385,7 @@ AIMS Policy (this document)
 
 > The undersigned, acting in the capacity of AI Owner of the enchanter-ai project, commits to:
 >
-> 1. Maintaining the AI Management System as documented in this policy and in the supporting compliance package at `agent-foundations/compliance/iso-42001-readiness/`.
+> 1. Maintaining the AI Management System as documented in this policy and in the supporting compliance package at `vis/compliance/iso-42001-readiness/`.
 > 2. Providing the resources (time, tooling, budget) needed to operate the AIMS at the small-team scale at which the project operates.
 > 3. Reviewing this policy annually, and after any material change to scope, technology, or organizational structure.
 > 4. Conducting quarterly management reviews per the template at `management-review-template.md`.
@@ -480,7 +480,7 @@ A reviewed policy emits:
 - NIST AI Risk Management Framework 1.0 + Generative AI Profile (cross-reference: `nist-ai-rmf.md`)
 - SOC 2 Trust Services Criteria (cross-reference: `soc2.md`)
 - FedRAMP AI baseline (cross-reference: `fedramp-boundary.md`)
-- Internal: `agent-foundations/shared/conduct/*.md`
+- Internal: `vis/shared/conduct/*.md`
 - Internal: `wixie/CLAUDE.md`
 - Internal: `wixie/prompts/security-closure/results/synthesis.md`
 
@@ -491,7 +491,7 @@ A reviewed policy emits:
 - **AIMS** — AI Management System. The set of policies, processes, roles, and artifacts that govern AI development and operation.
 - **Agent** — A skill or subagent acting under this AIMS, typically Claude operating under a tier (Opus / Sonnet / Haiku).
 - **Conduct module** — A `shared/conduct/*.md` file specifying operational defaults.
-- **Plugin** — A self-contained unit of capability (one of: wixie, hydra, djinn, sylph, naga, crow, pech, lich, agent-foundations).
+- **Plugin** — A self-contained unit of capability (one of: wixie, hydra, djinn, sylph, naga, crow, pech, lich, vis).
 - **Skill** — A slash-command-invoked unit of work within a plugin.
 - **F-code** — A code from the 14-entry failure-mode taxonomy in `shared/conduct/failure-modes.md`.
 - **DEPLOY bar** — The shipping criterion in `wixie/CLAUDE.md`: σ < 0.45, overall ≥ 9.0, all axes ≥ 7.0, 8/8 SAT assertions pass.

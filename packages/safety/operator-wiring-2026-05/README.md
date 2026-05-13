@@ -1,6 +1,6 @@
-# Operator Wiring Kit — agent-foundations (2026-05)
+# Operator Wiring Kit — vis (2026-05)
 
-Scaffolding for an operator to wire agent-foundations into their observability + paging stack in under a day. Config + verify, not code.
+Scaffolding for an operator to wire vis into their observability + paging stack in under a day. Config + verify, not code.
 
 ## What's in the box
 
@@ -40,7 +40,7 @@ operator-wiring-2026-05/
 ## What this kit is NOT
 
 - **Not a credential broker.** We don't store or proxy the operator's API keys. Every verify script takes the key as an argument or env var, sends it directly to the vendor's endpoint, and exits.
-- **Not a runtime integration.** Once the operator has confirmed each integration with the verify scripts, they wire the same endpoints + secret-manager references into agent-foundations' own config. This kit's job ends at "verify PASSED — now flip the config flag."
+- **Not a runtime integration.** Once the operator has confirmed each integration with the verify scripts, they wire the same endpoints + secret-manager references into vis' own config. This kit's job ends at "verify PASSED — now flip the config flag."
 - **Not autonomous.** Every verify ends with a manual UI confirmation step. The kit can confirm the HTTP layer is wired; only a human can confirm the event hit the right dashboard / paged the right team / pinged the right Slack channel.
 
 ## How to use (TL;DR)
@@ -62,9 +62,9 @@ operator-wiring-2026-05/
 
 ## Bridge to the audit-trail plugins
 
-Once verifies are green, agent-foundations' own emitters (defined in the audit-trail plugins) point at the same endpoints the verify scripts just exercised. Concretely:
+Once verifies are green, vis' own emitters (defined in the audit-trail plugins) point at the same endpoints the verify scripts just exercised. Concretely:
 
-- The OTLP exporter inside agent-foundations uses `OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_EXPORTER_OTLP_HEADERS` — the same env vars the runbook + verify-otlp use. Confirming `verify-otlp.py` works means agent-foundations' tracing will work the moment it starts up with the same env.
+- The OTLP exporter inside vis uses `OTEL_EXPORTER_OTLP_ENDPOINT` and `OTEL_EXPORTER_OTLP_HEADERS` — the same env vars the runbook + verify-otlp use. Confirming `verify-otlp.py` works means vis' tracing will work the moment it starts up with the same env.
 - The pager + Slack emitters consume `paging-config.json`. The same JSON file is what `config-validator.py` lints. If the validator passes and `verify-pager.py` / `verify-slack.py` pass against the keys referenced in the file, the emitters will succeed too.
 - Sentry init reads `SENTRY_DSN` from env. If `verify-sentry.py` passes, the runtime client will accept the same DSN.
 

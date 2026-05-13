@@ -109,7 +109,7 @@ Entries are append-only. Do not edit prior entries. If a gate was triggered, the
 
 If your team already runs OpenTelemetry with the GenAI semantic conventions, the following mapping lets you connect the framework's budget signals to your existing spans. This section is optional — it describes what to name spans if instrumentation exists, not a requirement to add instrumentation.
 
-| agent-foundations signal | OTel GenAI attribute |
+| vis signal | OTel GenAI attribute |
 |--------------------------|---------------------|
 | Session token estimate | `gen_ai.usage.input_tokens` + `gen_ai.usage.output_tokens` (sum across spans) |
 | Per-subagent tool-call count | Span count for `gen_ai.operation.name = "tool"` under the subagent's trace |

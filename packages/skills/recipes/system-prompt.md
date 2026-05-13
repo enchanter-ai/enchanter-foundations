@@ -1,6 +1,6 @@
 # Recipe — Generic System Prompt
 
-How to adopt agent-foundations when your runtime gives you only a system prompt — no skill registry, no hook framework, no submodule magic. Works for the OpenAI Chat Completions API, the Anthropic Messages API, llama.cpp, Ollama, or any place you control a single string.
+How to adopt vis when your runtime gives you only a system prompt — no skill registry, no hook framework, no submodule magic. Works for the OpenAI Chat Completions API, the Anthropic Messages API, llama.cpp, Ollama, or any place you control a single string.
 
 ## What you get
 
@@ -12,7 +12,7 @@ A system prompt assembled from selected conduct modules, optionally with a per-t
 from pathlib import Path
 import requests
 
-ROOT = Path("vendor/agent-foundations")  # or wherever you cloned it
+ROOT = Path("vendor/vis")  # or wherever you cloned it
 
 def assemble_system_prompt(role: str, modules: list[str], task_specific: str = "") -> str:
     sections = [f"# Role\n\n{role.strip()}"]

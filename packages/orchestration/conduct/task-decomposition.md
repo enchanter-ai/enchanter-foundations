@@ -201,7 +201,7 @@ Estimated tier-cost: 1 Opus + 2 Sonnet + 1 Haiku
 
 **Example 3 — gate fires (heavy with bg):**
 
-User: "Migrate all 9 sibling repos to vendor agent-foundations as shared/foundations/."
+User: "Migrate all 9 sibling repos to vendor vis as shared/vis/."
 
 Heavy decomposition: 1 orchestrator + 9 worker nodes (one per repo, parallel where independent) + 1 synthesizer + 1 verifier. `bg` mode for the long-running per-repo migrations; synthesizer node has Deps edges to all 9 to consume their results.
 
@@ -220,4 +220,4 @@ If the gate fires, emit the roadmap before any worker spawns. If the gate skips,
 
 ---
 
-For Claude system-prompt loading, use the XML version at `<repo>/prompts/roadmap-orchestrator/prompt.xml` (Wixie ecosystem only). The XML form is functionally equivalent to this markdown — it ships in the Claude-native tag format for direct system-prompt injection, while this conduct module is the cross-vendor markdown form that propagates to all sibling repos via the `shared/foundations/` vendor pattern.
+For Claude system-prompt loading, use the XML version at `<repo>/prompts/roadmap-orchestrator/prompt.xml` (Wixie ecosystem only). The XML form is functionally equivalent to this markdown — it ships in the Claude-native tag format for direct system-prompt injection, while this conduct module is the cross-vendor markdown form that propagates to all sibling repos via the `shared/vis/` vendor pattern.

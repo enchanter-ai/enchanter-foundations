@@ -12,16 +12,16 @@ When the CPA firm arrives, they receive:
 
 | Item | Source-of-truth |
 |---|---|
-| Control mapping (CC1-CC9 + A1.x) | `agent-foundations/compliance/soc2.md` |
-| Evidence-collection plan | `agent-foundations/compliance/soc2-evidence/evidence-collection-plan.md` |
-| Daily evidence archive | `agent-foundations/compliance/soc2-evidence/collected/YYYY-MM-DD/` (signed by cosign daily) |
-| Per-criterion playbooks | `agent-foundations/compliance/soc2-evidence/playbooks/*.md` |
-| Auditor-readiness dashboard | `agent-foundations/compliance/soc2-evidence/auditor-readiness-dashboard.md` |
+| Control mapping (CC1-CC9 + A1.x) | `vis/compliance/soc2.md` |
+| Evidence-collection plan | `vis/compliance/soc2-evidence/evidence-collection-plan.md` |
+| Daily evidence archive | `vis/compliance/soc2-evidence/collected/YYYY-MM-DD/` (signed by cosign daily) |
+| Per-criterion playbooks | `vis/compliance/soc2-evidence/playbooks/*.md` |
+| Auditor-readiness dashboard | `vis/compliance/soc2-evidence/auditor-readiness-dashboard.md` |
 | HMAC-chained audit log | `hydra/plugins/audit-trail/state/log.jsonl` |
 | SBOM (CycloneDX) | `hydra/plugins/sbom-emitter/state/sbom.cdx.json` |
 | Pattern catalog (SPRT) | `wixie/plugins/inference-engine/state/catalog.json` |
 | Risk register | `wixie/prompts/security-closure/results/synthesis.md` |
-| Conduct modules | `agent-foundations/shared/conduct/*.md` |
+| Conduct modules | `vis/shared/conduct/*.md` |
 | Per-prompt artifacts | `wixie/prompts/<name>/{metadata.json, tests.json, learnings.md}` |
 
 All artifacts are git-versioned and cryptographically signed at the daily-bundle level (cosign keyless OIDC via GitHub Actions).

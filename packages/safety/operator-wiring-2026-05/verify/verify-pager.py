@@ -32,8 +32,8 @@ def pd_payload(routing_key: str, dedup_key: str) -> dict:
         "event_action": "trigger",
         "dedup_key": dedup_key,
         "payload": {
-            "summary": "verify.synthetic — agent-foundations integration check",
-            "source": "enchanter-agent-foundations",
+            "summary": "verify.synthetic — vis integration check",
+            "source": "enchanter-vis",
             "severity": "warning",
             "timestamp": dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z"),
             "component": "operator-wiring",
@@ -57,12 +57,12 @@ def pd_resolve(routing_key: str, dedup_key: str) -> dict:
 
 def og_payload(alias: str) -> dict:
     return {
-        "message": "verify.synthetic — agent-foundations integration check",
+        "message": "verify.synthetic — vis integration check",
         "alias": alias,
         "description": "Synthetic alert from verify-pager.py. Close manually after confirming.",
         "priority": "P5",
-        "source": "enchanter-agent-foundations",
-        "tags": ["agent-foundations", "verify", "synthetic"],
+        "source": "enchanter-vis",
+        "tags": ["vis", "verify", "synthetic"],
         "details": {"verify_id": str(uuid.uuid4())},
     }
 

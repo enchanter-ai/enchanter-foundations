@@ -18,7 +18,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-EVIDENCE_DIR = ROOT / "agent-foundations" / "compliance" / "soc2-evidence"
+EVIDENCE_DIR = ROOT / "vis" / "compliance" / "soc2-evidence"
 COLLECTED = EVIDENCE_DIR / "collected"
 DASHBOARD = EVIDENCE_DIR / "auditor-readiness-dashboard.md"
 

@@ -42,6 +42,6 @@ Skip changesets for: typo fixes in untracked docs, internal scaffolding, CI-only
 
 ## Cross-repo strategy
 
-Each enchanter-ai repo versions independently for now. `agent-foundations` is the canonical home for shared conduct; downstream plugin repos (wixie, hydra, sylph, …) consume conduct via the conduct-abi.yml propagation, not via npm dependency.
+Each enchanter-ai repo versions independently for now. `vis` is the canonical home for shared conduct; downstream plugin repos (wixie, hydra, sylph, …) consume conduct via the conduct-abi.yml propagation, not via npm dependency.
 
 Future: once conduct ships as `@enchanter-ai/conduct` on npm, downstream repos will pin against published versions and changesets here will drive their dependency bumps directly. See `docs/CROSS_REPO_VERSIONING.md`.

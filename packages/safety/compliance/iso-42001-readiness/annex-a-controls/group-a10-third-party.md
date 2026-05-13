@@ -73,7 +73,7 @@
 
 **Evidence:**
 
-- `agent-foundations/compliance/`
+- `vis/compliance/`
 - GitHub Issues + Security Advisories
 
 **Conformance:** Conformant.

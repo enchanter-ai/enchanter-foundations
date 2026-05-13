@@ -101,7 +101,7 @@ def main() -> int:
     p.add_argument("api_key", nargs="?", default=None, help="API key / token (omit with --no-auth)")
     p.add_argument("--header-name", default="DD-API-KEY", help="auth header name (default DD-API-KEY)")
     p.add_argument("--no-auth", action="store_true", help="skip auth header (for local collectors)")
-    p.add_argument("--service", default="enchanter-agent-foundations", help="service.name attribute")
+    p.add_argument("--service", default="enchanter-vis", help="service.name attribute")
     args = p.parse_args()
 
     if not args.no_auth and not args.api_key:

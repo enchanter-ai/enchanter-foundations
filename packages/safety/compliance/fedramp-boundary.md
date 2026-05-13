@@ -37,7 +37,7 @@ For a federal-customer deployment, the **authorization boundary** would be the c
 
 | Repo | Role | Plugin count | Purpose |
 |---|---|---|---|
-| agent-foundations | Conduct + runbooks + this folder | n/a | Behavioral defaults, taxonomy, runbooks, compliance |
+| vis | Conduct + runbooks + this folder | n/a | Behavioral defaults, taxonomy, runbooks, compliance |
 | hydra | Defensive controls | 15 | Audit, capability-fence, egress, secret-scan, vuln, SBOM, license, package-gate, canary, action-guard, config-shield, reach-filter |
 | wixie | Prompt engineering lifecycle + inference engine | 9 | Deep research, craft, refine, converge, test, harden, translate, convergence-engine, inference-engine |
 | pech | Cost + budget | 7 | Budget watcher, cost tracker, rate-limiter, rate-shield, cost-query, rate-card-keeper, nook-learning |
@@ -74,7 +74,7 @@ For a federal-customer deployment, the **authorization boundary** would be the c
 
 ## 3. Authorization boundary diagram (text description)
 
-A graphical version reference: `agent-foundations/docs/architecture/highlevel.mmd`. Text rendering of the boundary:
+A graphical version reference: `vis/docs/architecture/highlevel.mmd`. Text rendering of the boundary:
 
 ```
 +============================================================+
@@ -83,7 +83,7 @@ A graphical version reference: `agent-foundations/docs/architecture/highlevel.mm
 |                                                            |
 |  +----------------------+   +----------------------------+ |
 |  |  Claude Code harness |   |  enchanter-ai plugins      | |
-|  |  (Anthropic, OOB)    |<--+  (agent-foundations,        | |
+|  |  (Anthropic, OOB)    |<--+  (vis,        | |
 |  |                      |   |   hydra, wixie, pech,       | |
 |  |  - Tool runtime      |   |   sylph, lich, crow, emu,   | |
 |  |  - Hook dispatcher   |   |   gorgon, naga, djinn)       | |
@@ -239,7 +239,7 @@ This file will be the artifact a FedRAMP 3PAO consumes during the SC-7 control r
 | OTLP exporter to Sentry/Datadog | Real-time (planned) | OTLP spans | **In progress** — F-021/F-024 |
 | Quarterly self-attestation | Quarterly | This compliance/ folder | **Shipped** — first issuance 2026-05-05 |
 | Wald SPRT pattern reconcile | Per-emit + weekly cron | `inference-engine/state/catalog.json` | **Shipped** |
-| MTTR runbooks per F-code | On-incident | `agent-foundations/runbooks/F0*.md` | **Shipped** for F01-F21; pager wiring pending (F-011) |
+| MTTR runbooks per F-code | On-incident | `vis/runbooks/F0*.md` | **Shipped** for F01-F21; pager wiring pending (F-011) |
 
 ### 7.2 Annual assessment cadence
 
@@ -286,8 +286,8 @@ This document supports: 3PAO scoping conversations, agency CIO pre-acquisition r
 - ISO/IEC 42001 mapping: [`./iso-42001.md`](./iso-42001.md)
 - SOC 2 mapping: [`./soc2.md`](./soc2.md)
 - Closure audit: `wixie/prompts/security-closure/results/synthesis.md`
-- Architecture diagram: `agent-foundations/docs/architecture/highlevel.mmd`
-- Conduct modules: `agent-foundations/shared/conduct/*.md`
+- Architecture diagram: `vis/docs/architecture/highlevel.mmd`
+- Conduct modules: `vis/shared/conduct/*.md`
 
 ---
 

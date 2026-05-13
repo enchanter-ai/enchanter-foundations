@@ -1,6 +1,6 @@
 # Recipes
 
-Adoption guides for host platforms. Each recipe gives concrete file paths, concrete config, and verification steps for wiring agent-foundations into a specific host. Unlike the conduct modules (which say *what* to do) and the engines (which say *what to compute*), recipes say *where to put it* — per-host specifics that would be wrong to bake into the portable layers.
+Adoption guides for host platforms. Each recipe gives concrete file paths, concrete config, and verification steps for wiring vis into a specific host. Unlike the conduct modules (which say *what* to do) and the engines (which say *what to compute*), recipes say *where to put it* — per-host specifics that would be wrong to bake into the portable layers.
 
 ## Index
 
@@ -13,7 +13,7 @@ Adoption guides for host platforms. Each recipe gives concrete file paths, concr
 | [pydantic-ai.md](pydantic-ai.md) | Wiring conduct and engines into a Pydantic AI agent: validators, deps, and result types |
 | [baml.md](baml.md) | Using BAML for structured output extraction in agent pipelines: schema authoring and BamlError handling |
 | [system-prompt.md](system-prompt.md) | Loading conduct modules via a system prompt when no framework-native integration is available |
-| [eval-harnesses.md](eval-harnesses.md) | Connecting agent-foundations to an eval harness: failure-code tagging, axis aggregation, and regression gates |
+| [eval-harnesses.md](eval-harnesses.md) | Connecting vis to an eval harness: failure-code tagging, axis aggregation, and regression gates |
 
 ## How to read
 

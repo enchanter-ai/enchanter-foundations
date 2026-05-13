@@ -1,4 +1,4 @@
-# agent-foundations — Repo Instructions
+# vis — Repo Instructions
 
 Audience: Claude (or any agent) editing this repo.
 

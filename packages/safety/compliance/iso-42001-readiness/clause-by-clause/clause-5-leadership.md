@@ -97,7 +97,7 @@ The twelve modules constitute the operational policy:
 ### Evidence
 
 - `aims-policy.md`
-- `agent-foundations/shared/conduct/*.md`
+- `vis/shared/conduct/*.md`
 - `wixie/CLAUDE.md` (root anchor that loads conduct modules)
 
 ### Gap

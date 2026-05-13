@@ -1,6 +1,6 @@
 # PagerDuty Events API v2 Setup
 
-Wire agent-foundations HIGH-severity advisories to a PagerDuty service via the Events API v2. Time: ~10 minutes.
+Wire vis HIGH-severity advisories to a PagerDuty service via the Events API v2. Time: ~10 minutes.
 
 ## Prerequisites
 
@@ -9,10 +9,10 @@ Wire agent-foundations HIGH-severity advisories to a PagerDuty service via the E
 
 ## Step 1 — Create the integration
 
-1. PagerDuty UI → Services → pick (or create) the service that receives agent-foundations pages.
+1. PagerDuty UI → Services → pick (or create) the service that receives vis pages.
 2. Integrations tab → "+ Add an Integration".
 3. Integration type: **Events API v2**.
-4. Name: `enchanter-agent-foundations`.
+4. Name: `enchanter-vis`.
 5. After creation, PagerDuty shows an **Integration Key** (a 32-char hex string). Copy it.
 
 This integration key — sometimes called the routing key — is what authenticates the event.
@@ -46,7 +46,7 @@ Expected output:
 ## Step 4 — Confirm + clean up
 
 1. Open `https://<your-org>.pagerduty.com/incidents`.
-2. The verify script creates a low-urgency synthetic incident titled `verify.synthetic — agent-foundations integration check`.
+2. The verify script creates a low-urgency synthetic incident titled `verify.synthetic — vis integration check`.
 3. Confirm it appears.
 4. **Resolve it manually** in the UI (or let the verify script auto-resolve — pass `--auto-resolve`).
 
@@ -54,16 +54,16 @@ Until resolved, the synthetic incident will follow the service's escalation poli
 
 ## Step 5 — Configure event routing (optional)
 
-Recommended routing per agent-foundations severity:
+Recommended routing per vis severity:
 
-| agent-foundations severity | PagerDuty severity | PagerDuty action |
+| vis severity | PagerDuty severity | PagerDuty action |
 |----------------------------|--------------------|-------------------|
 | HIGH                       | `critical`         | trigger          |
 | MEDIUM                     | `warning`          | trigger (low urgency) |
 | LOW                        | (skip)             | route to Slack instead |
 | RESOLVED                   | n/a                | `resolve` action with same `dedup_key` |
 
-The `dedup_key` is the agent-foundations advisory ID — same incident_id deduplicates on PD's side.
+The `dedup_key` is the vis advisory ID — same incident_id deduplicates on PD's side.
 
 ## Payload shape (reference)
 
@@ -76,7 +76,7 @@ The verify script sends and the production emitter must send:
   "dedup_key": "<advisory-id>",
   "payload": {
     "summary": "string ≤ 1024 chars",
-    "source": "enchanter-agent-foundations",
+    "source": "enchanter-vis",
     "severity": "critical | error | warning | info",
     "timestamp": "ISO-8601 UTC",
     "component": "string",
