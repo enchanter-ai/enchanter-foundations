@@ -25,10 +25,12 @@ Usage:
 
 Options:
   --target DIR    Where to install. Default: shared/vis
-  --mode MODE     Which surfaces to keep:
-                    full     all conduct + engines + taxonomy + recipes + docs (default)
-                    starter  conduct/ + taxonomy/ + glossary + anti-patterns
-                    minimal  conduct/ only
+  --mode MODE     Which packages to keep (vis is a packages-monorepo; modes trim packages/):
+                    full     every package + docs + roadmap-2026 (default)
+                    starter  packages/{core,skills,web} + docs — production starter pack:
+                             baseline conduct + F01-F14 + host recipes + web-fetch discipline
+                    minimal  packages/core only — baseline conduct, F01-F14 taxonomy + runbooks,
+                             glossary, anti-patterns, conduct-abi-check.sh
   --submodule     Install as a git submodule (history preserved, pinned via parent repo).
                   Default is a vendored copy with .git stripped — easier to drop into any project.
   -h, --help      Show this message and exit.
@@ -82,14 +84,30 @@ else
   rm -rf -- "$TARGET/.git"
 fi
 
-# Trim per mode
+# Trim per mode. vis is a packages-monorepo; modes drop whole packages from packages/.
+# Top-level docs/, roadmap-2026/, package.json, install.sh, LICENSE, CHANGELOG.md are kept
+# in full and starter; minimal drops top-level docs/ and roadmap-2026/ as well.
 case "$MODE" in
   starter)
-    rm -rf -- "$TARGET/engines" "$TARGET/recipes" "$TARGET/docs"
+    # Keep: packages/{core,skills,web} + docs/. Drop everything else.
+    rm -rf -- \
+      "$TARGET/packages/orchestration" \
+      "$TARGET/packages/safety" \
+      "$TARGET/packages/memory" \
+      "$TARGET/packages/cost" \
+      "$TARGET/roadmap-2026"
     ;;
   minimal)
-    rm -rf -- "$TARGET/engines" "$TARGET/taxonomy" "$TARGET/recipes" "$TARGET/docs"
-    rm -f  -- "$TARGET/anti-patterns.md" "$TARGET/glossary.md"
+    # Keep packages/core only. Drop all sibling packages + cross-cutting docs.
+    rm -rf -- \
+      "$TARGET/packages/skills" \
+      "$TARGET/packages/orchestration" \
+      "$TARGET/packages/safety" \
+      "$TARGET/packages/web" \
+      "$TARGET/packages/memory" \
+      "$TARGET/packages/cost" \
+      "$TARGET/docs" \
+      "$TARGET/roadmap-2026"
     ;;
 esac
 
@@ -103,10 +121,10 @@ Installed vis at $TARGET (mode: $MODE, $KIND).
 
 Next steps:
   1. Reference modules from your CLAUDE.md, system prompt, or .cursor/rules:
-       @$TARGET/conduct/discipline.md
-       @$TARGET/conduct/verification.md
-       @$TARGET/conduct/tool-use.md
+       @$TARGET/packages/core/conduct/discipline.md
+       @$TARGET/packages/core/conduct/verification.md
+       @$TARGET/packages/core/conduct/tool-use.md
 
   2. Pick a recipe for your host:
-       https://github.com/enchanter-ai/vis/tree/main/recipes
+       https://github.com/enchanter-ai/vis/tree/main/packages/skills/recipes
 EOF
