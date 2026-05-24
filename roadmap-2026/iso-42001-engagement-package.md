@@ -2,7 +2,7 @@
 
 **Audience:** Compliance lead + engineering exec preparing the AIMS (AI Management System) for third-party certification.
 **Scope:** Selecting an accredited certification body, navigating Stage 1 (documentation review) and Stage 2 (implementation audit), and maintaining the certificate across the three-year cycle.
-**Prerequisite:** Internal readiness pack at `vis/compliance/iso-42001-readiness/` is drafted and minutes from Management Review #1 exist. If that pack is not yet in place, complete Section 2 (Pre-engagement readiness) before requesting cert-body quotes — quotes anchor to scope, and scope without a Statement of Applicability is a guess.
+**Prerequisite:** Internal readiness pack at `packages/safety/compliance/iso-42001-readiness/` is drafted and minutes from Management Review #1 exist. If that pack is not yet in place, complete Section 2 (Pre-engagement readiness) before requesting cert-body quotes — quotes anchor to scope, and scope without a Statement of Applicability is a guess.
 **Status of figures:** All pricing in this document is **estimated** from public references, vendor sales conversations, and 2025-era engagement post-mortems. Quotes must be obtained directly; treat the ranges as planning anchors, not commitments.
 
 ---
@@ -42,7 +42,7 @@ ISO/IEC 42001 was published 2023-12. Accreditation for cert bodies under UKAS (U
 
 ## 2. Pre-engagement readiness assessment
 
-Run this checklist against the existing pack at `vis/compliance/iso-42001-readiness/` before requesting quotes. Every "no" is a Stage 1 or Stage 2 finding waiting to happen.
+Run this checklist against the existing pack at `packages/safety/compliance/iso-42001-readiness/` before requesting quotes. Every "no" is a Stage 1 or Stage 2 finding waiting to happen.
 
 ### 2.1 Clause 4 — Context of the organization
 
@@ -334,4 +334,4 @@ Post-cert:
 **Document version:** v1 (2026-05-05)
 **Next review:** post-Stage 1 walkthrough, or 2026-Q4, whichever first.
 **Owner:** Compliance lead.
-**References:** `vis/compliance/iso-42001-readiness/` (full readiness pack), `vis/roadmap-2026/MACRO_ROADMAP.md` (program-level context).
+**References:** `packages/safety/compliance/iso-42001-readiness/` (full readiness pack), `roadmap-2026/MACRO_ROADMAP.md` (program-level context).

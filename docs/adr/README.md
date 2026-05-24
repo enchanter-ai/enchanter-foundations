@@ -45,7 +45,7 @@ Don't write an ADR for:
 | ADR | Title | Status |
 |-----|-------|--------|
 | 0001 | [Layered structure: conduct + engines + taxonomy + recipes](./0001-four-layers.md) | Accepted |
-| 0002 | [Taxonomy expansion to F15–F21 and deferred 5-axis migration decision](./0002-taxonomy-expansion.md) | Accepted; structural question resolved via hybrid in `taxonomy/axes.md` (added 2026-05-05) |
+| 0002 | [Taxonomy expansion to F15–F21 and deferred 5-axis migration decision](./0002-taxonomy-expansion.md) | Accepted; structural question resolved via hybrid in `packages/core/taxonomy/axes.md` (added 2026-05-05) |
 | 0003 | [Family-of-plugins layout: split monolithic vis into 7 focused packages](./ADR-family-split.md) | Accepted, 2026-05-11 |
 
 ## Numbering

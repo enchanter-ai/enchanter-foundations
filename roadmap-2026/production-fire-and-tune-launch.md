@@ -240,7 +240,7 @@ Any one failing → continue pilot, extend by 2 weeks, re-evaluate.
 
 Operator deliverables before flipping the GA switch:
 
-- [ ] **Operator runbooks updated** in `vis/docs/runbooks/` for each shield, covering: deploy, configure, debug, rollback, escalate.
+- [ ] **Operator runbooks updated** under `packages/safety/operator-wiring-2026-05/setup-runbooks/` for each shield, covering: deploy, configure, debug, rollback, escalate.
 - [ ] **Pricing page drafted** and reviewed by 3 design partners. Three tiers (solo / team / enterprise); team tier price calibrated to the Cohort C feedback.
 - [ ] **Support tier defined.** Tier 1 (community Discord, no SLA), Tier 2 (email, business-day SLA, included with team), Tier 3 (dedicated Slack channel, 4-hour SLA, enterprise add-on).
 - [ ] **SLA published.** 99.5% uptime for telemetry endpoint (the shields are local; SLA covers our side of the wire). No SLA on detection accuracy — the synthetic + real-traffic numbers stand as honest disclosure.

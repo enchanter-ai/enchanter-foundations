@@ -1,6 +1,6 @@
 # Anti-Patterns — A Cross-Cutting Catalog
 
-Audience: anyone scanning for "what not to do" before they do it. Aggregates the anti-patterns called out across [`conduct/`](conduct/), [`engines/`](engines/), and [`taxonomy/`](taxonomy/) into one greppable surface.
+Audience: anyone scanning for "what not to do" before they do it. Aggregates the anti-patterns called out across conduct modules (in `packages/{core,skills,orchestration,safety,web,memory,cost}/conduct/`), engines (`packages/orchestration/engines/`), and taxonomy (`packages/core/taxonomy/` + `packages/safety/taxonomy/`) into one greppable surface.
 
 This is **not the source of truth** — each pattern's home module is. But when you want to spot-check a design before shipping, this is the doc.
 
@@ -49,21 +49,21 @@ This is **not the source of truth** — each pattern's home module is. But when 
 
 ## Formatting
 
-- **Inconsistent tag names** — `<context>` once, `<background>` later. ([formatting.md](conduct/formatting.md))
-- **XML in a GPT prompt without translating.** ([formatting.md](conduct/formatting.md))
-- **Chain-of-thought in an o-series prompt** — double-reasoning. ([formatting.md](conduct/formatting.md))
-- **No-prefill, then complaining about preamble.** ([formatting.md](conduct/formatting.md))
-- **Bold on everything** — emphasis becomes noise. ([formatting.md](conduct/formatting.md))
-- **Few-shot examples that don't match the real task shape.** ([formatting.md](conduct/formatting.md))
+- **Inconsistent tag names** — `<context>` once, `<background>` later. ([formatting.md](../skills/conduct/formatting.md))
+- **XML in a GPT prompt without translating.** ([formatting.md](../skills/conduct/formatting.md))
+- **Chain-of-thought in an o-series prompt** — double-reasoning. ([formatting.md](../skills/conduct/formatting.md))
+- **No-prefill, then complaining about preamble.** ([formatting.md](../skills/conduct/formatting.md))
+- **Bold on everything** — emphasis becomes noise. ([formatting.md](../skills/conduct/formatting.md))
+- **Few-shot examples that don't match the real task shape.** ([formatting.md](../skills/conduct/formatting.md))
 
 ## Skill authoring
 
-- **Description with only the what, no when** — never fires at the right moment. ([skill-authoring.md](conduct/skill-authoring.md))
-- **First-person description.** ([skill-authoring.md](conduct/skill-authoring.md))
-- **Bundled skill (multi-verb)** — selector can't disambiguate. ([skill-authoring.md](conduct/skill-authoring.md))
-- **Over-broad tool whitelist.** ([skill-authoring.md](conduct/skill-authoring.md))
-- **Body that explains *why* instead of *how*.** ([skill-authoring.md](conduct/skill-authoring.md))
-- **Missing do-not-use clause on overlapping skills.** ([skill-authoring.md](conduct/skill-authoring.md))
+- **Description with only the what, no when** — never fires at the right moment. ([skill-authoring.md](../skills/conduct/skill-authoring.md))
+- **First-person description.** ([skill-authoring.md](../skills/conduct/skill-authoring.md))
+- **Bundled skill (multi-verb)** — selector can't disambiguate. ([skill-authoring.md](../skills/conduct/skill-authoring.md))
+- **Over-broad tool whitelist.** ([skill-authoring.md](../skills/conduct/skill-authoring.md))
+- **Body that explains *why* instead of *how*.** ([skill-authoring.md](../skills/conduct/skill-authoring.md))
+- **Missing do-not-use clause on overlapping skills.** ([skill-authoring.md](../skills/conduct/skill-authoring.md))
 
 ## Hooks
 
@@ -96,12 +96,12 @@ This is **not the source of truth** — each pattern's home module is. But when 
 
 ## Web fetch
 
-- **Default everything to low tier** — dense papers get shallow extracts. ([web-fetch.md](conduct/web-fetch.md))
-- **Default everything to top tier** — easy pages cost 10× too much. ([web-fetch.md](conduct/web-fetch.md))
-- **No cache at all.** ([web-fetch.md](conduct/web-fetch.md))
-- **Quote that "captures the gist"** — copy-paste or omit. ([web-fetch.md](conduct/web-fetch.md))
-- **Fetch-without-date** — downstream can't weight freshness. ([web-fetch.md](conduct/web-fetch.md))
-- **Fetching when a local doc answers the question.** ([web-fetch.md](conduct/web-fetch.md))
+- **Default everything to low tier** — dense papers get shallow extracts. ([web-fetch.md](../web/conduct/web-fetch.md))
+- **Default everything to top tier** — easy pages cost 10× too much. ([web-fetch.md](../web/conduct/web-fetch.md))
+- **No cache at all.** ([web-fetch.md](../web/conduct/web-fetch.md))
+- **Quote that "captures the gist"** — copy-paste or omit. ([web-fetch.md](../web/conduct/web-fetch.md))
+- **Fetch-without-date** — downstream can't weight freshness. ([web-fetch.md](../web/conduct/web-fetch.md))
+- **Fetching when a local doc answers the question.** ([web-fetch.md](../web/conduct/web-fetch.md))
 
 ## Failure logging
 
@@ -123,21 +123,21 @@ This is **not the source of truth** — each pattern's home module is. But when 
 
 ## Engines
 
-- **Patterns sharing common suffixes without transitive output links** — Aho-Corasick misses them. ([pattern-detection.md](engines/pattern-detection.md))
-- **Treating posterior mean as ground truth without variance** — Beta-Bernoulli with few observations. ([trust-scoring.md](engines/trust-scoring.md))
-- **Default unit cost on tree-edit when domain has weighted operations.** ([tree-edit.md](engines/tree-edit.md))
-- **Choosing SPRT `(p₀, p₁)` post-hoc to match observed data** — invalidates the test. ([sprt.md](engines/sprt.md))
-- **Idle-only segmentation in boundary detection** — multi-signal exists for a reason. ([boundary-segmentation.md](engines/boundary-segmentation.md))
-- **Confusing simplified Wagner-Fischer with true Zhang-Shasha** — document which version you ship. ([tree-edit.md](engines/tree-edit.md))
+- **Patterns sharing common suffixes without transitive output links** — Aho-Corasick misses them. ([pattern-detection.md](../orchestration/engines/pattern-detection.md))
+- **Treating posterior mean as ground truth without variance** — Beta-Bernoulli with few observations. ([trust-scoring.md](../orchestration/engines/trust-scoring.md))
+- **Default unit cost on tree-edit when domain has weighted operations.** ([tree-edit.md](../orchestration/engines/tree-edit.md))
+- **Choosing SPRT `(p₀, p₁)` post-hoc to match observed data** — invalidates the test. ([sprt.md](../orchestration/engines/sprt.md))
+- **Idle-only segmentation in boundary detection** — multi-signal exists for a reason. ([boundary-segmentation.md](../orchestration/engines/boundary-segmentation.md))
+- **Confusing simplified Wagner-Fischer with true Zhang-Shasha** — document which version you ship. ([tree-edit.md](../orchestration/engines/tree-edit.md))
 
 ## Conduct (recent additions)
 
-- **All-Add as the default** — appending every observation to working memory without pruning, leading to self-degradation. ([memory-hygiene.md](conduct/memory-hygiene.md))
-- **Spawn cap omitted from delegation prompts** — no per-subagent or session-wide token cap; total cost grows unbounded. ([cost-accounting.md](conduct/cost-accounting.md))
-- **Speculative evals** — adding eval cases for hypothetical bugs that haven't been observed. ([eval-driven-self-improvement.md](conduct/eval-driven-self-improvement.md))
-- **Sycophantic capitulation across turns** — flipping stance under sustained user pressure without new evidence. ([multi-turn-negotiation.md](conduct/multi-turn-negotiation.md))
-- **Blanket topic refusals** — refusing benign requests adjacent to refused topics (false-refusal cycle). ([refusal-and-recovery.md](conduct/refusal-and-recovery.md))
-- **Treating latency as a cost proxy** — assuming token cost and wall-clock latency move together; they don't. ([latency-budgeting.md](conduct/latency-budgeting.md))
+- **All-Add as the default** — appending every observation to working memory without pruning, leading to self-degradation. ([memory-hygiene.md](../memory/conduct/memory-hygiene.md))
+- **Spawn cap omitted from delegation prompts** — no per-subagent or session-wide token cap; total cost grows unbounded. ([cost-accounting.md](../cost/conduct/cost-accounting.md))
+- **Speculative evals** — adding eval cases for hypothetical bugs that haven't been observed. ([eval-driven-self-improvement.md](../orchestration/conduct/eval-driven-self-improvement.md))
+- **Sycophantic capitulation across turns** — flipping stance under sustained user pressure without new evidence. ([multi-turn-negotiation.md](../orchestration/conduct/multi-turn-negotiation.md))
+- **Blanket topic refusals** — refusing benign requests adjacent to refused topics (false-refusal cycle). ([refusal-and-recovery.md](../safety/conduct/refusal-and-recovery.md))
+- **Treating latency as a cost proxy** — assuming token cost and wall-clock latency move together; they don't. ([latency-budgeting.md](../cost/conduct/latency-budgeting.md))
 
 ## How to use this doc
 

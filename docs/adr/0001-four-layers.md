@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted.
+Accepted. Layout note (2026-05-11): the four layers are preserved conceptually but now physically sliced across the packages-monorepo described in [ADR-0003](./ADR-family-split.md). Path references below have been updated to the current `packages/<area>/<layer>/` shape; the decision itself is unchanged.
 
 ## Context
 
@@ -16,14 +16,14 @@ The wrong answer to any of these would make the framework either unusable for ne
 
 ## Decision
 
-Four top-level surfaces, each with a single role:
+Four logical surfaces, each with a single role:
 
-- **`conduct/`** — behavior rules. What the agent should do or avoid.
-- **`engines/`** — math-grounded primitives. What the agent should compute.
-- **`taxonomy/`** — failure-code catalog. How the agent classifies what went wrong.
-- **`recipes/`** — host-specific adoption guides. How a project picks the framework up.
+- **conduct** — behavior rules. What the agent should do or avoid. Lives in `packages/{core,skills,orchestration,safety,web,memory,cost}/conduct/`.
+- **engines** — math-grounded primitives. What the agent should compute. Lives in `packages/orchestration/engines/`.
+- **taxonomy** — failure-code catalog. How the agent classifies what went wrong. Lives in `packages/core/taxonomy/` (F01–F14) and `packages/safety/taxonomy/` (F15–F21).
+- **recipes** — host-specific adoption guides. How a project picks the framework up. Lives in `packages/skills/recipes/` (host wiring) and `packages/cost/recipes/` (eval harnesses).
 
-Cross-cutting docs (`README.md`, `glossary.md`, `anti-patterns.md`, `CLAUDE.md`) live at the root.
+Cross-cutting docs (`README.md`, `packages/core/glossary.md`, `packages/core/anti-patterns.md`, `packages/core/CLAUDE.md`) live at the repo root or in `packages/core/`.
 
 Layering invariants (see [`../architecture/README.md`](../architecture/README.md) § Layering invariants):
 
@@ -43,7 +43,7 @@ Layering invariants (see [`../architecture/README.md`](../architecture/README.md
 
 ### Bad
 
-- **Some duplication.** A reader wanting "everything I need to know about destructive ops" reads `conduct/verification.md` (the rule), `taxonomy/f10-destructive-without-confirmation.md` (the failure mode), and `recipes/<host>.md` (the wiring). Three files, one topic. The aggregate `anti-patterns.md` and `glossary.md` mitigate this.
+- **Some duplication.** A reader wanting "everything I need to know about destructive ops" reads `packages/core/conduct/verification.md` (the rule), `packages/core/taxonomy/f10-destructive-without-confirmation.md` (the failure mode), and `packages/skills/recipes/<host>.md` (the wiring). Three files, one topic. The aggregate `packages/core/anti-patterns.md` and `packages/core/glossary.md` mitigate this.
 - **More folders to find your way around.** A flatter structure would be easier on day one but harder on month six.
 - **The line between conduct and engines isn't always clean.** Some primitives (LCS-based drift detection, EMA-driven cooldowns) sit at the boundary. We pick one folder per primitive and document the choice in the doc itself.
 

@@ -2,7 +2,7 @@
 
 Status: Operator-ready, 2026-05-05. Owner: Compliance lead. Cycle: Type I (1 month) → Type II (6 month observation + 4-6 week report).
 
-This package assumes the shipped evidence infrastructure at `vis/compliance/soc2-evidence/` is live: AIMS policy signed, risk register approved, internal audit #1 closed, automated evidence collection on cron, dashboards reachable. If any of those four are not green, do not start engagement — fix first.
+This package assumes the shipped evidence infrastructure at `packages/safety/compliance/soc2-evidence/` is live: AIMS policy signed, risk register approved, internal audit #1 closed, automated evidence collection on cron, dashboards reachable. If any of those four are not green, do not start engagement — fix first.
 
 Throughout: TSC = Trust Services Criteria; CC = Common Criteria; SOC 2 Type II requires a 3-12 month observation window (industry default: 6 months for first cycle, 12 months thereafter).
 
@@ -71,7 +71,7 @@ The observation period is the 6 months the auditor will sample evidence from. St
 
 ### Day 0 prerequisites (must be green before kickoff)
 
-- [ ] **AIMS policy signed** — versioned in `vis/compliance/soc2-evidence/policies/aims-policy-v1.md`, executive signature captured, ack-form completed by all engineers.
+- [ ] **AIMS policy signed** — versioned in `packages/safety/compliance/soc2-evidence/policies/aims-policy-v1.md`, executive signature captured, ack-form completed by all engineers.
 - [ ] **Risk register approved** — `compliance/soc2-evidence/risk-register.json` reviewed in management review meeting; minutes attached.
 - [ ] **Internal audit #1 complete** — `compliance/soc2-evidence/internal-audits/IA-001/` contains scope memo, findings, management responses, remediation owner + due date.
 - [ ] **Evidence collection cron running** — `compliance/soc2-evidence/automation/cron-status.json` shows ≥ 7 consecutive days of green pulls (access reviews, change tickets, vuln scans, backup verifications, monitoring alerts).

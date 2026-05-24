@@ -28,7 +28,7 @@ The five locks:
 
 2. **Monorepo with `pluginRoot: "./packages"`.** A single git repo `vis`, one `.claude-plugin/marketplace.json` at the repo root, 7 plugin manifests under `packages/<name>/.claude-plugin/plugin.json`. Doc-supported pattern per `plugin-marketplaces` § Walkthrough Step 4. `git mv` preserves per-file history across the cut-over — no `filter-repo` rewrite.
 
-3. **Dep DAG, no cycles.** `core` is the root with no outbound deps. `{skills, web, memory, cost, safety}` each depend on `core`. `orchestration` depends on `core` AND `cost` (the only non-core edge, driven by `multi-turn-negotiation.md` referencing `recipes/eval-harnesses.md`). Verified topologically in s2.0 § Decision 2.
+3. **Dep DAG, no cycles.** `core` is the root with no outbound deps. `{skills, web, memory, cost, safety}` each depend on `core`. `orchestration` depends on `core` AND `cost` (the only non-core edge, driven by `packages/orchestration/conduct/multi-turn-negotiation.md` referencing `packages/cost/recipes/eval-harnesses.md`). Verified topologically in s2.0 § Decision 2.
 
 4. **Naming: `enchanter-<concept>` kebab-case; initial version 0.6.0 across all 7.** Continuity with the monolith's v0.6.0 — anyone migrating doesn't see a fresh 0.1.0 and wonder if it's a different product. Subsequent versions diverge per package. Semver policy per s2.0 § Decision 4 (MAJOR = removed/renamed module or tightened "should"→"must" detectable by consumers; MINOR = added module/code/recipe; PATCH = clarification without behavior change).
 
@@ -58,7 +58,7 @@ The five locks:
 ### Neutral
 
 - **Tag-push per package is 7 release operations.** `claude plugin tag --push packages/<name>` × 7 succeeded in s2.2; the operational ceiling for a future v0.7 release of all 7 is the same. If only some packages bump, only those tag-pushes fire.
-- **`orchestration → cost` is the only non-core edge.** Acceptable in a DAG. Driven by one cross-ref (`multi-turn-negotiation.md` → `recipes/eval-harnesses.md`). Could be eliminated in v0.7 by inlining a one-paragraph summary; deferred.
+- **`orchestration → cost` is the only non-core edge.** Acceptable in a DAG. Driven by one cross-ref (`packages/orchestration/conduct/multi-turn-negotiation.md` → `packages/cost/recipes/eval-harnesses.md`). Could be eliminated in v0.7 by inlining a one-paragraph summary; deferred.
 - **`operator-wiring-2026-05/` folded into `enchanter-safety`.** 17 files of paging/observability content — closest semantic match was safety, but if safety's audience splits (security-engineer vs. SRE) a v0.7 `enchanter-ops` package becomes a candidate.
 
 ## Alternatives considered

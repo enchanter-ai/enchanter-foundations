@@ -2,6 +2,8 @@
 
 How the four moving parts of vis compose. Read once; reference when extending.
 
+The repo is a packages-monorepo: each of the four layers below is sliced across `packages/{core,safety,orchestration,web,skills,cost,memory}/` so adopters can pull just the area they need. The four-layer split is the conceptual frame; package boundaries are the physical layout.
+
 ## The four parts
 
 ```
@@ -21,15 +23,15 @@ How the four moving parts of vis compose. Read once; reference when extending.
         │                  │  compute"  │                │
 ```
 
-| Layer | Surface | Role |
-|-------|---------|------|
-| `conduct/` | 19 rule modules | What the agent should do or avoid |
-| `engines/` | 12 algorithm docs | What the agent should compute |
-| `taxonomy/` | 21 failure-code docs (+ axes.md) | How the agent names what went wrong |
-| `recipes/` | 8 host adoption guides | How a project picks up the framework |
-| `runbooks/` | 21 incident-response runbooks | How to triage and recover per failure code |
+| Layer | Where it lives | Role |
+|-------|----------------|------|
+| conduct | `packages/{core,skills,orchestration,safety,web,memory,cost}/conduct/` (36 rule modules) | What the agent should do or avoid |
+| engines | `packages/orchestration/engines/` (12 algorithm docs) | What the agent should compute |
+| taxonomy | `packages/core/taxonomy/` (F01–F14 + axes.md), `packages/safety/taxonomy/` (F15–F21) | How the agent names what went wrong |
+| recipes | `packages/skills/recipes/` (8 host guides) + `packages/cost/recipes/` (eval-harnesses) | How a project picks up the framework |
+| runbooks | `packages/core/runbooks/` (F01–F14), `packages/safety/runbooks/` (F15–F21) | How to triage and recover per failure code |
 
-`anti-patterns.md` and `glossary.md` cross-cut all four.
+`packages/core/anti-patterns.md` and `packages/core/glossary.md` cross-cut all four.
 
 ## Composition: who calls whom
 
@@ -67,22 +69,23 @@ These hold at all times. Violations are bugs.
 Cross-refs across folders use relative paths:
 
 - Inside the same folder: `./X.md`
-- One folder up + sibling: `../engines/X.md`, `../conduct/X.md`
-- Never absolute paths, never repo-rooted (`/conduct/X.md`)
+- Within the same package: `../engines/X.md`, `../conduct/X.md`
+- Across packages: `../../<other-package>/conduct/X.md` (e.g., `../../web/conduct/web-fetch.md`)
+- Never absolute paths, never repo-rooted (`/packages/core/conduct/X.md`)
 
-This keeps the repo movable. If a fork relocates the folders, only one search-and-replace fixes references.
+This keeps the repo movable. If a fork relocates the packages, only one search-and-replace fixes references.
 
 ## Extending
 
 | Adding a new… | Goes in | PR template |
 |---------------|---------|-------------|
-| Behavior rule | `conduct/<name>.md` | Justify why it doesn't fit an existing module |
-| Algorithm | `engines/<name>.md` | Reference paper + complexity + failure modes |
-| Failure code | `taxonomy/f<NN>-<slug>.md` + index update | 3+ independent observations + testable counter |
-| Host integration | `recipes/<host>.md` | Concrete adoption steps + verification check |
+| Behavior rule | `packages/<area>/conduct/<name>.md` (pick the package whose scope the rule belongs to) | Justify why it doesn't fit an existing module |
+| Algorithm | `packages/orchestration/engines/<name>.md` | Reference paper + complexity + failure modes |
+| Failure code | `packages/core/taxonomy/f<NN>-<slug>.md` (F01–F14) or `packages/safety/taxonomy/f<NN>-<slug>.md` (F15+) + index update | 3+ independent observations + testable counter |
+| Host integration | `packages/skills/recipes/<host>.md` | Concrete adoption steps + verification check |
 | Architectural decision | `docs/adr/<NNNN>-<slug>.md` | Context, decision, consequences |
 
-Adjacent docs that *describe* the framework but aren't part of it (this file, `anti-patterns.md`, `glossary.md`) live at the repo root or in `docs/`.
+Adjacent docs that *describe* the framework but aren't part of it (this file, `packages/core/anti-patterns.md`, `packages/core/glossary.md`) live at the repo root or in `docs/`.
 
 ## Stability commitments
 

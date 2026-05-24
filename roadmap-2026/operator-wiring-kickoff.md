@@ -4,7 +4,7 @@ Audience: the on-call operator bringing each integration live for the first time
 
 Integrations in scope: Datadog, Sentry, PagerDuty, Opsgenie, Slack, Splunk.
 
-All shipped artifacts live under `vis/operator-wiring-2026-05/`:
+All shipped artifacts live under `packages/safety/operator-wiring-2026-05/`:
 
 - `setup-runbooks/<integration>.md` — one runbook per integration (cred fields, env vars, post-setup smoke test)
 - `verify/verify-all.sh` — single-entry verifier, returns non-zero on any failure
@@ -21,7 +21,7 @@ Run these in order. Do not skip ahead — step N's verify is step N+1's precondi
 
 ### Cold start (steps 1–6)
 
-1. Clone the repo at the tag named in `MACRO_ROADMAP.md` § Operator-wiring. Verify `vis/operator-wiring-2026-05/` is present.
+1. Clone the repo at the tag named in `MACRO_ROADMAP.md` § Operator-wiring. Verify `packages/safety/operator-wiring-2026-05/` is present.
 2. Copy `operator-wiring-2026-05/.env.example` to `.env.local`. Do NOT commit this file.
 3. Install prereqs: Docker Desktop running, `jq`, `curl`, `bash` (Git Bash on Windows is fine).
 4. From `operator-wiring-2026-05/mock-endpoints/`, run `docker compose up -d`. Confirm all six mock services reach healthy status (`docker compose ps`).
